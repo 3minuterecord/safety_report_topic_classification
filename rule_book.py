@@ -20,7 +20,7 @@ def translate_to_regex(rule_part):
         return r'(\b' + r'\b)|(\b'.join([s for s in rule_part.split('_ ') if s]) + r'\b)'
     else:
         return ''
-
+    
 
 def check_presence(pattern, string):
     if pattern:
@@ -115,3 +115,4 @@ def categorize_text(text_df, rules, window=5):
     return(text_df)
 
 my_test = 'fgfgee'
+print(my_test)
