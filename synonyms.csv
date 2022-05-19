@@ -1,4 +1,12 @@
 ﻿syn,keywords
-worker_syns,"employee, ip, worker, man, woman, he, she, his, her, the, left, right, operator, operative, technician"
-pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed"
+back_pain_syns,"pain, discomfort, soreness, hurt,  swelling, swollen,  irritation,  laceration, swell, swelling, swollen, twinge"
+back_syns,back
+collision_syns,"collision, accident"
 eye_syns,"eye, pupil, iris"
+gen1_syns,the
+involve_syns,"involved, participated in"
+object_syns,"post, wall, scaffold"
+pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed, swell, swelling, swollen"
+vehicle_syns,"dozer, excavator, truck, forklift, car, vehicle, digger, van, bus, utility"
+vehicle_move_syns,"backed into, hit, collided, reversed into, crashed, smashed into, drove into, driven into, driving into, impacted, struck by"
+worker_syns,"employee, ip, worker, man, woman, he, she, his, her, left, right, operator, operative, technician"
