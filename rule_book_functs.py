@@ -108,6 +108,8 @@ def rule_book_scan(incidents, syn_dict, rules):
         
         shuffle = rules.shuffle[r]
         
+        void = rules.voids[r]
+        
         search_keyword = rules.keyword[r]
 
         console_str = f'Checking rule {r+1} of {len(rules)} ({cat})'
@@ -132,8 +134,9 @@ def rule_book_scan(incidents, syn_dict, rules):
                                 x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
                                 pattern = f'({x})'
                                 check = check_presence(pattern, chk_text)
-                                    
-                                if check: 
+                                void_check = check_presence(void, chk_text)
+                             
+                                if check and not void_check: 
                                     print(f'{check}: {pattern}')
                                     finds_list.append(check)
                                     finds_pats.append(pattern)
