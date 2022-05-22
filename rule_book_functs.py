@@ -97,7 +97,7 @@ def rule_book_scan(incidents, syn_dict, rules):
     incid_nums = []
     incid_cats = []
     
-    for r in range(1, len(rules), 1):
+    for r in range(0, len(rules), 1):
     #for r in range(3, 4, 1):
         
         rul_syns = tokenize(re.sub(r", ", " ", rules.syns[r]))
@@ -149,7 +149,7 @@ def rule_book_scan(incidents, syn_dict, rules):
                                     void_check = False
                                 else:    
                                     for void in voids.split(sep = ', '):
-                                        void_check = check_presence(void, chk_text)
+                                        void_check = check_presence(f'\\b{void}', chk_text)
                                         if void_check: break
                              
                                 if check and not void_check: 

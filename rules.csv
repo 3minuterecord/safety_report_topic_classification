@@ -6,3 +6,4 @@ slips and trips,-,"worker_syns, slip_syns, fall_syns","ladder, step-ladder",8,TR
 vehicle incident,-,"vehicle_syns, vehicle_move_syns, vehicle_syns",,8,FALSE
 vehicle incident,-,"vehicle_syns, vehicle_move_syns, object_syns",,8,TRUE
 vehicle incident,-,"involve_syns, vehicle_syns, collision_syns",,8,FALSE
+foot or leg injury,-,"worker_syns, hurt_syns, leg_syns",,8,TRUE

@@ -4,8 +4,10 @@ back_syns,back
 collision_syns,"collision, accident"
 eye_syns,"eye, pupil, iris"
 fall_syns,fell
+hurt_syns,"injured, injury, sore, rolled, soreness, abrasions, pinch, pinched, pain in, sprain, bump, dislocate, struck, swell, twist, bang, scrape, itch, sting, irritation, bruis, cut, puncture, splinter, jammed, crushed, laceration, sharp edge, got caught, cut, abrasion, banged, break, broke, broken"
 gen1_syns,the
 involve_syns,"involved, participated in"
+leg_syns,"ankle, foot, leg, knee, toe, calf, shin, thigh, hamstring"
 object_syns,"post, wall, scaffold"
 pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed, swell, swelling, swollen"
 slip_syns,"slipped, tripped"
