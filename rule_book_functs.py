@@ -110,7 +110,7 @@ def rule_book_scan(incidents, syn_dict, rules):
         connect = ['(.*)', '(.*)']
 
         # Shuffle rules
-        srs = ([1, 0, 2], [])
+        srs = ([1, 0, 2], [0, 2, 1])
 
         cat = rules.rule[r]
         
@@ -238,7 +238,7 @@ def rule_book_scan(incidents, syn_dict, rules):
     return(out_df)
 
 
-def deepdive_results(dat, incidents_df, finds_df, focus='finds', ):
+def deepdive_results(dat, incidents_df, finds_df, focus='finds'):
     for inc in dat.incident_id:
         sub_df = finds_df[finds_df.incid_nums == inc]
         sub_df = sub_df.drop(['finds_pats'], axis=1)

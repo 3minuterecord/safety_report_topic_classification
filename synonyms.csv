@@ -1,16 +1,26 @@
 ﻿syn,keywords
+arm_syns,"arm, elbow, forearm, wrist, palm, finger, thumb, pinky, pinkie, nail, knuckle, tricep, bicep, hand"
 back_pain_syns,"pain, discomfort, soreness, hurt,  swelling, swollen,  irritation,  laceration, swell, swelling, swollen, twinge"
 back_syns,back
-collision_syns,"collision, accident"
+collision_syns,"collision, collission, accident, clipped"
+covid_syns,"covid, covid-19, coronavirus, corona virus, pcr"
 eye_syns,"eye, pupil, iris"
-fall_syns,fell
-hurt_syns,"injured, injury, sore, rolled, soreness, abrasions, pinch, pinched, pain in, sprain, bump, dislocate, struck, swell, twist, bang, scrape, itch, sting, irritation, bruis, cut, puncture, splinter, jammed, crushed, laceration, sharp edge, got caught, cut, abrasion, banged, break, broke, broken"
+fall_syns,"fell, twisted"
+hurt_syns,"injured, injury, sore, rolled, soreness, abrasions, pinch, pinched, pain in, sprain, bump, dislocate, struck, swell, twist, bang, scrape, itch, \\bsting, irritation, bruis, cut, puncture, splinter, jammed, crushed, laceration, sharp edge, got caught, cut, abrasion, banged, break, broke, broken, amputat, crush"
 gen1_syns,the
+illness_syns,illness
+insect_animal_syns,"bug, fly, spider, snake, insect, dog, cat, animal, rodent"
 involve_syns,"involved, participated in"
 leg_syns,"ankle, foot, leg, knee, toe, calf, shin, thigh, hamstring"
-object_syns,"post, wall, scaffold"
+non_work_syns,non-work related
+object_syns,"post, wall, scaffold, bollard"
 pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed, swell, swelling, swollen"
 slip_syns,"slipped, tripped"
-vehicle_syns,"dozer, excavator, truck, forklift, car, vehicle, digger, van, bus, utility"
-vehicle_move_syns,"backed into, hit, collided, reversed into, crashed, smashed into, drove into, driven into, driving into, impacted, struck by"
-worker_syns,"employee, ip, worker, man, woman, he, she, his, her, left, right, operator, operative, technician, scaffolder"
+suffered_syns,"suffered, bit, bite"
+tested_syns,"tested positive, symptoms, pcr"
+vehicle_syns,"dozer, excavator, truck, forklift, car, vehicle, digger, van, bus, utility, trailer, flatbed"
+vehicle_move_syns,"backed into, hit, collided, reversed into, crashed, smashed into, drove into, driven into, driving into, impacted, struck by, clipped, contacted, bumped"
+worker_syns,"employee, ip, worker, man, woman, he, she, his, her, left, right, operator, operative, technician, scaffolder, team member, person"
+gen_body_syns,"shoulder, muscle, neck, abdomen, skin, bowel, groin"
+theft_syns,"stole, robbed, broke into"
+theft_object_syns,"equipment, window, cabin, office, car, diesel, fuel, tools"

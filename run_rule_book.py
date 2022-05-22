@@ -40,7 +40,7 @@ rul_csv = pd.read_csv('rules.csv')
 TEST = False
 if TEST:
     # Run a quick tests
-    txt = 'ip knocked knee on a telehandler door and on entry to his room.  woke up in the morning with mild swelling and pain on the knee.  first aid case migrated from legacy cairs incident #40135around 15.30 yesterday, ip (nacap)had knocked his left knee on the telehandler door whilst entering the cabin. ip had continued working normally.around 18.30 yesterday, the ip had knocked the same knee whilst entering his accommodation (block 4 c). ip had then went for dinner.ip had retired for the evening and woke this morning with mild swelling and pain in the left knee. ip had then reported the injury and attended the clinic. ip treated with ibuprofen. faccorrective / preventativeaction (not working in system)reinforced with crews importance of line of fire and body positioning, reinforced the importance of reporting illnesses and injuries, regardless how minordiscussed longford incident in which a ip suffered a jarred knee. migrated from legacy cairs - see detailed description.'
+    txt = 'ips hand was crushed while putting a generator onto the back of a van.'
     tdf = pd.DataFrame({'incident_id':[1052], 'text':[txt]})
     finds_df = rbfuncts.rule_book_scan(tdf, syn_dict, rul_csv)
     finds_count = len(list(dict.fromkeys(finds_df[finds_df.finds_list == True].incid_nums)))
@@ -54,7 +54,7 @@ else:
     conso_df['incid_cats'] = conso_df['incid_cats'].apply(lambda x: rbfuncts.remove_dups(x))
     # How many incidents were classified
     finds_count = len(list(dict.fromkeys(finds_df[finds_df.finds_list == True].incid_nums)))
-    rbfuncts.deepdive_results(sample100, incidents, finds_df, focus='finds')
+    rbfuncts.deepdive_results(sample100, incidents, finds_df, focus='misses')
     print(finds_df)
     print('\n')
     print(f'Number of finds is {finds_count}')
