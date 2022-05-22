@@ -2,7 +2,7 @@
 eye injury or irritation,eye,"worker_syns, pain_syns, eye_syns",,8,TRUE
 eye injury or irritation,eye,"gen1_syns, pain_syns, eye_syns",,8,TRUE
 back injury,back,"worker_syns, back_pain_syns, back_syns",,8,TRUE
-slips and trips,-,"worker_syns, slip_syns, fall_syns",ladder,8,TRUE
+slips and trips,-,"worker_syns, slip_syns, fall_syns","ladder, step-ladder",8,TRUE
 vehicle incident,-,"vehicle_syns, vehicle_move_syns, vehicle_syns",,8,FALSE
 vehicle incident,-,"vehicle_syns, vehicle_move_syns, object_syns",,8,TRUE
 vehicle incident,-,"involve_syns, vehicle_syns, collision_syns",,8,FALSE

@@ -108,7 +108,7 @@ def rule_book_scan(incidents, syn_dict, rules):
         
         shuffle = rules.shuffle[r]
         
-        void = rules.voids[r]
+        voids = rules.voids[r]
         
         search_keyword = rules.keyword[r]
 
@@ -134,7 +134,10 @@ def rule_book_scan(incidents, syn_dict, rules):
                                 x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
                                 pattern = f'({x})'
                                 check = check_presence(pattern, chk_text)
-                                void_check = check_presence(void, chk_text)
+                                
+                                for void in voids.split(sep = ', '):
+                                    void_check = check_presence(void, chk_text)
+                                    if void_check: break
                              
                                 if check and not void_check: 
                                     print(f'{check}: {pattern}')
@@ -152,7 +155,9 @@ def rule_book_scan(incidents, syn_dict, rules):
                                         # Adjust the word sequence using shuffle rule                             
                                         pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
                                         rev_check = check_presence(pattern, chk_text)
-                                        if rev_check: 
+                                        void_check = check_presence(void, chk_text)
+                                                             
+                                        if rev_check and not void_check:
                                             print(f'{rev_check}: {pattern} ---Shuffled')
                                             finds_list.append(rev_check)
                                             finds_pats.append(pattern)
@@ -167,8 +172,9 @@ def rule_book_scan(incidents, syn_dict, rules):
                                     x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
                                     pattern = f'({x})'
                                     check = check_presence(pattern, kwic)
-
-                                    if check: 
+                                    void_check = check_presence(void, chk_text)
+                                     
+                                    if check and not void_check: 
                                         print(f'{check}: {pattern}')
                                         finds_list.append(check)
                                         finds_pats.append(pattern)
@@ -184,7 +190,9 @@ def rule_book_scan(incidents, syn_dict, rules):
                                             # Adjust the word sequence using shuffle rule                                            
                                             pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
                                             rev_check = check_presence(pattern, chk_text)
-                                            if rev_check: 
+                                            void_check = check_presence(void, chk_text)
+                                            
+                                            if rev_check and not void_check:  
                                                 print(f'{rev_check}: {pattern} ---Shuffled')
                                                 finds_list.append(rev_check)
                                                 finds_pats.append(pattern)
