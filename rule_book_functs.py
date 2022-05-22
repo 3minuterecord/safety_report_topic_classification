@@ -11,6 +11,12 @@ from tqdm import tqdm
 def isNaN(num):
     return num!= num
 
+def remove_dups(ent):
+    split_ent = ent.split(', ')
+    uniqe_ent = list(dict.fromkeys(split_ent))
+    rjoin_ent = ", ".join(uniqe_ent)
+    return(rjoin_ent)
+
 def tokenize(text):
     tokens = word_tokenize(text)
     tokens = [tok for tok in tokens if tok!='-']
@@ -91,7 +97,7 @@ def rule_book_scan(incidents, syn_dict, rules):
     incid_nums = []
     incid_cats = []
     
-    for r in range(len(rules)):
+    for r in range(1, len(rules), 1):
     #for r in range(3, 4, 1):
         
         rul_syns = tokenize(re.sub(r", ", " ", rules.syns[r]))

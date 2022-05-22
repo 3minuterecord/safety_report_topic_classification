@@ -47,7 +47,12 @@ else:
     # Run on sample of 100 incidents
     sample100 = pd.read_csv('sample100.csv', dtype=str)
     finds_df = rbfuncts.rule_book_scan(sample100, syn_dict, rul_csv)  
+    conso_df = finds_df.groupby(['incid_nums'])['incid_cats'].apply(', '.join).reset_index()
+    conso_df['incid_cats'] = conso_df['incid_cats'].apply(lambda x: rbfuncts.remove_dups(x))
     # How many incidents were classified
     finds_count = len(list(dict.fromkeys(finds_df[finds_df.finds_list == True].incid_nums)))
     print(f'Number of finds is {finds_count}')
     rbfuncts.deepdive_results(sample100, incidents, finds_df, focus='finds')
+    print(finds_df)
+    print('\n')
+    print(conso_df)
