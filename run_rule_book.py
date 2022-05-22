@@ -11,7 +11,7 @@ import rule_book_functs as rbfuncts
 
 # Load raw incident data
 incidents_fn = "data/source/20220413_D1_Incidents.csv"
-incidents = pd.read_csv(incidents_fn, dtype=str)
+incidents = pd.read_csv(incidents_fn, dtype=str)  
 
 # Concatenate some of the fields to make the 'text' field for searching
 incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
