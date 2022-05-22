@@ -36,6 +36,7 @@ for r in range(len(syn_csv)):
 # Now load the rule definitions
 rul_csv = pd.read_csv('rules.csv')
 
+# Now run the rule book
 TEST = False
 if TEST:
     # Run a quick tests
