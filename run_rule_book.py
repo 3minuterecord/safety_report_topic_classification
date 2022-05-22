@@ -36,8 +36,17 @@ for r in range(len(syn_csv)):
 # Now load the rule definitions
 rul_csv = pd.read_csv('rules.csv')
 
-# Now run some quick tests
-txt = 'This is me. He tripped and fell from the ladder and dtep-sadder.'
-tdf = pd.DataFrame({'incident_id':[1052], 'text':[txt]})
-rbfuncts.rule_book_scan(tdf, syn_dict, rul_csv)
-
+TEST = False
+if TEST:
+    # Run a quick tests
+    txt = 'This is me. He tripped and fell from the ladder and dtep-sadder.'
+    tdf = pd.DataFrame({'incident_id':[1052], 'text':[txt]})
+    rbfuncts.rule_book_scan(tdf, syn_dict, rul_csv)
+else:
+    # Run on sample of 100 incidents
+    sample100 = pd.read_csv('sample100.csv', dtype=str)
+    finds_df = rbfuncts.rule_book_scan(sample100, syn_dict, rul_csv)  
+    # How many incidents were classified
+    finds_count = len(list(dict.fromkeys(finds_df[finds_df.finds_list == True].incid_nums)))
+    print(f'Number of finds is {finds_count}')
+    rbfuncts.deepdive_results(sample100, incidents, finds_df, focus='finds')

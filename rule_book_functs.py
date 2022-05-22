@@ -5,7 +5,11 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.stem import PorterStemmer as stemmer
-from tqdm.notebook import tqdm
+#from tqdm.notebook import tqdm
+from tqdm import tqdm
+
+def isNaN(num):
+    return num!= num
 
 def tokenize(text):
     tokens = word_tokenize(text)
@@ -87,8 +91,8 @@ def rule_book_scan(incidents, syn_dict, rules):
     incid_nums = []
     incid_cats = []
     
-    #for r in range(len(rules)):
-    for r in range(3, 4, 1):
+    for r in range(len(rules)):
+    #for r in range(3, 4, 1):
         
         rul_syns = tokenize(re.sub(r", ", " ", rules.syns[r]))
         
@@ -109,7 +113,7 @@ def rule_book_scan(incidents, syn_dict, rules):
         shuffle = rules.shuffle[r]
         
         voids = rules.voids[r]
-        
+     
         search_keyword = rules.keyword[r]
 
         console_str = f'Checking rule {r+1} of {len(rules)} ({cat})'
@@ -135,9 +139,12 @@ def rule_book_scan(incidents, syn_dict, rules):
                                 pattern = f'({x})'
                                 check = check_presence(pattern, chk_text)
                                 
-                                for void in voids.split(sep = ', '):
-                                    void_check = check_presence(void, chk_text)
-                                    if void_check: break
+                                if isNaN(voids):
+                                    void_check = False
+                                else:    
+                                    for void in voids.split(sep = ', '):
+                                        void_check = check_presence(void, chk_text)
+                                        if void_check: break
                              
                                 if check and not void_check: 
                                     print(f'{check}: {pattern}')
@@ -155,7 +162,13 @@ def rule_book_scan(incidents, syn_dict, rules):
                                         # Adjust the word sequence using shuffle rule                             
                                         pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
                                         rev_check = check_presence(pattern, chk_text)
-                                        void_check = check_presence(void, chk_text)
+                                        
+                                        if isNaN(voids):
+                                            void_check = False
+                                        else:    
+                                            for void in voids.split(sep = ', '):
+                                                void_check = check_presence(void, chk_text)
+                                                if void_check: break
                                                              
                                         if rev_check and not void_check:
                                             print(f'{rev_check}: {pattern} ---Shuffled')
@@ -172,7 +185,13 @@ def rule_book_scan(incidents, syn_dict, rules):
                                     x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
                                     pattern = f'({x})'
                                     check = check_presence(pattern, kwic)
-                                    void_check = check_presence(void, chk_text)
+                                    
+                                    if isNaN(voids):
+                                        void_check = False
+                                    else:    
+                                        for void in voids.split(sep = ', '):
+                                            void_check = check_presence(void, chk_text)
+                                            if void_check: break
                                      
                                     if check and not void_check: 
                                         print(f'{check}: {pattern}')
@@ -190,7 +209,13 @@ def rule_book_scan(incidents, syn_dict, rules):
                                             # Adjust the word sequence using shuffle rule                                            
                                             pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
                                             rev_check = check_presence(pattern, chk_text)
-                                            void_check = check_presence(void, chk_text)
+                                            
+                                            if isNaN(voids):
+                                                void_check = False
+                                            else:    
+                                                for void in voids.split(sep = ', '):
+                                                    void_check = check_presence(void, chk_text)
+                                                    if void_check: break
                                             
                                             if rev_check and not void_check:  
                                                 print(f'{rev_check}: {pattern} ---Shuffled')
