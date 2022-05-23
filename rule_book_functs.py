@@ -90,16 +90,25 @@ def find_pattern(tokens, keyword, check_pre, check_post, check_all, check_void, 
     return final_match    
 
 # Rule book scanner function
-def rule_book_scan(incidents, syn_dict, rules, verbose=False):
+# Rule book scanner function
+def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
     
     finds_list = []
     finds_pats = []
     incid_nums = []
     incid_cats = []
     
-    for r in range(0, len(rules), 1):
-    #for r in range(3, 4, 1):
-        
+    # Run all rules or selected rules?
+    if run_rules == 'All':
+        run_rules_list = range(0, len(rules), 1)
+    else:
+        # Subtract 1 from each element in list for indices
+        for i in range(len(run_rules)):
+            run_rules[i] = run_rules[i] - 1
+        run_rules_list = run_rules
+
+    for r in run_rules_list:
+                
         rul_syns = tokenize(re.sub(r", ", " ", rules.syns[r]))
         
         pos_1st = syn_dict.get(rul_syns[0])
