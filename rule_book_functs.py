@@ -90,7 +90,7 @@ def find_pattern(tokens, keyword, check_pre, check_post, check_all, check_void, 
     return final_match    
 
 # Rule book scanner function
-def rule_book_scan(incidents, syn_dict, rules):
+def rule_book_scan(incidents, syn_dict, rules, verbose=False):
     
     finds_list = []
     finds_pats = []
@@ -153,7 +153,7 @@ def rule_book_scan(incidents, syn_dict, rules):
                                         if void_check: break
                              
                                 if check and not void_check: 
-                                    print(f'{check}: {pattern}')
+                                    if verbose: print(f'{check}: {pattern}')
                                     finds_list.append(check)
                                     finds_pats.append(pattern)
                                     incid_nums.append(irn)
@@ -177,7 +177,7 @@ def rule_book_scan(incidents, syn_dict, rules):
                                                 if void_check: break
                                                              
                                         if rev_check and not void_check:
-                                            print(f'{rev_check}: {pattern} ---Shuffled')
+                                            if verbose:  print(f'{rev_check}: {pattern} ---Shuffled')
                                             finds_list.append(rev_check)
                                             finds_pats.append(pattern)
                                             incid_nums.append(irn)
@@ -200,7 +200,7 @@ def rule_book_scan(incidents, syn_dict, rules):
                                             if void_check: break
                                      
                                     if check and not void_check: 
-                                        print(f'{check}: {pattern}')
+                                        if verbose: print(f'{check}: {pattern}')
                                         finds_list.append(check)
                                         finds_pats.append(pattern)
                                         incid_nums.append(irn)
@@ -224,7 +224,7 @@ def rule_book_scan(incidents, syn_dict, rules):
                                                     if void_check: break
                                             
                                             if rev_check and not void_check:  
-                                                print(f'{rev_check}: {pattern} ---Shuffled')
+                                                if verbose: print(f'{rev_check}: {pattern} ---Shuffled')
                                                 finds_list.append(rev_check)
                                                 finds_pats.append(pattern)
                                                 incid_nums.append(irn)
