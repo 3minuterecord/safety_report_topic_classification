@@ -7,6 +7,9 @@ from nltk.tokenize import sent_tokenize
 from nltk.stem import PorterStemmer as stemmer
 #from tqdm.notebook import tqdm
 from tqdm import tqdm
+import sys
+
+
 
 def isNaN(num):
     return num!= num
@@ -107,6 +110,8 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
             run_rules[i] = run_rules[i] - 1
         run_rules_list = run_rules
 
+    finds_count = 0
+
     for r in run_rules_list:
                 
         rul_syns = tokenize(re.sub(r", ", " ", rules.syns[r]))
@@ -131,22 +136,42 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
      
         search_keyword = rules.keyword[r]
 
+        def add_and_next():
+            finds_list.append(check)
+            finds_pats.append(pattern)
+            incid_nums.append(irn)
+            incid_cats.append(cat)
+
         console_str = f'Checking rule {r+1} of {len(rules)} ({cat})'
         print(console_str)
         print('='*len(console_str))
-        for row in tqdm(range(len(incidents))):
+        #for row in tqdm(range(len(incidents))):
+        
+        for row in range(len(incidents)):
+            
+            sys.stdout.write('\r')
+            # the exact output you're looking for:
+            per_found = round(100*finds_count/len(incidents), 1)
+            out_str = f'{row+1}/{len(incidents)} [{finds_count}] {per_found}% classified...'
+            sys.stdout.write(out_str)
+            sys.stdout.flush()
+            
+            flag = False
             par_text = incidents.text[row].lower()
             # Check sentence by sentence, don't use span
             # TODO: Check impact of using span, should it be used or not?
             sen_toks = sent_tokenize(par_text)    
             irn = incidents.incident_id[row]
             for chk_text in sen_toks:
-                
+                if flag == True: break
                 # TODO: remove plurals, workers or worker's >>> worker
                 for first_syn in pos_1st:
                     locals()["first_syn"] = first_syn.strip()
+                    if flag == True: break
                     for second_syn in pos_2nd: 
-                        for third_syn in pos_3rd:                              
+                        if flag == True: break
+                        for third_syn in pos_3rd:  
+                            if flag == True: break                            
                             
                             if search_keyword == '-':
                                 
@@ -160,13 +185,15 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                     for void in voids.split(sep = ', '):
                                         void_check = check_presence(f'\\b{void}', chk_text)
                                         if void_check: break
-                             
+                                
                                 if check and not void_check: 
-                                    if verbose: print(f'{check}: {pattern}')
-                                    finds_list.append(check)
-                                    finds_pats.append(pattern)
-                                    incid_nums.append(irn)
-                                    incid_cats.append(cat)
+                                    if verbose: 
+                                        print(f'\n{check}: {pattern}')
+                                        print('Goto: Next rule...')
+                                    add_and_next()    
+                                    finds_count+=1
+                                    flag = True                                
+                                    break
                                     
                                 else:
                                     for sr in srs:
@@ -186,11 +213,13 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                                 if void_check: break
                                                              
                                         if rev_check and not void_check:
-                                            if verbose:  print(f'{rev_check}: {pattern} ---Shuffled')
-                                            finds_list.append(rev_check)
-                                            finds_pats.append(pattern)
-                                            incid_nums.append(irn)
-                                            incid_cats.append(cat)
+                                            if verbose: 
+                                                print(f'\n{rev_check}: {pattern} ---Shuffled')
+                                                print('Goto: Next rule...')
+                                            finds_count+=1
+                                            add_and_next()  
+                                            flag = True                                                               
+                                            break
                                 
                             else:
                                 test_tokens = tokenize(chk_text)
@@ -209,11 +238,13 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                             if void_check: break
                                      
                                     if check and not void_check: 
-                                        if verbose: print(f'{check}: {pattern}')
-                                        finds_list.append(check)
-                                        finds_pats.append(pattern)
-                                        incid_nums.append(irn)
-                                        incid_cats.append(cat)
+                                        if verbose:
+                                            print(f'\n{rev_check}: {pattern}')
+                                            print('Goto: Next rule...')
+                                        finds_count+=1
+                                        add_and_next()      
+                                        flag = True                             
+                                        break
 
                                     else:
                                         for sr in srs:
@@ -233,11 +264,13 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                                     if void_check: break
                                             
                                             if rev_check and not void_check:  
-                                                if verbose: print(f'{rev_check}: {pattern} ---Shuffled')
-                                                finds_list.append(rev_check)
-                                                finds_pats.append(pattern)
-                                                incid_nums.append(irn)
-                                                incid_cats.append(cat)
+                                                if verbose: 
+                                                    print(f'\n{rev_check}: {pattern} ---Shuffled')
+                                                    print('Goto: Next rule...')
+                                                finds_count+=1
+                                                add_and_next()  
+                                                flag = True                                 
+                                                break
                                             
         print('\n')
     out_df = pd.DataFrame(data=incid_nums, columns=['incid_nums'])
