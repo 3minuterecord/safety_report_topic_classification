@@ -6,8 +6,11 @@ covid,-,"worker_syns, tested_syns, covid_syns",,8,TRUE
 foot or leg injury,-,"worker_syns, hurt_syns, leg_syns",,8,TRUE
 general injury,-,"worker_syns, hurt_syns, gen_body_syns",,8,TRUE
 hand or arm injury,-,"worker_syns, hurt_syns, arm_syns",,8,TRUE
+hydraulic fluid or oil leak,-,"mech_component_syns, failure_syns, release_syns",,8,TRUE
+hydraulic fluid or oil leak,-,"mech_component_syns, failure_syns",,8,FALSE
 bites (animals or insects),-,"worker_syns, suffered_syns, insect_animal_syns",,8,TRUE
 non-work related injury or illness,-,"worker_syns, non_work_syns, illness_syns",,8,TRUE
+ppe non-compliance,ppe,"observed_syns, without_syns, ppe_syns",,8,TRUE
 slips and trips,-,"worker_syns, slip_syns, fall_syns","ladder, step-ladder",8,TRUE
 theft,-,"worker_syns, theft_syns, theft_object_syns",,8,TRUE
 vehicle incident,-,"vehicle_syns, vehicle_move_syns, vehicle_syns",,8,FALSE

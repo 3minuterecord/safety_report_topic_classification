@@ -118,7 +118,12 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
         
         pos_1st = syn_dict.get(rul_syns[0])
         pos_2nd = syn_dict.get(rul_syns[1])
-        pos_3rd = syn_dict.get(rul_syns[2])
+
+        if len(rul_syns)==3:
+            pos_3rd = syn_dict.get(rul_syns[2])
+            syn_count = 3
+        else:    
+            syn_count = 2
      
         # Connections between synonyms 1-2, 2-3
         connect = ['(.*)', '(.*)']
@@ -175,7 +180,10 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                             
                             if search_keyword == '-':
                                 
-                                x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                if syn_count == 3:
+                                    x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                else:
+                                    x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'    
                                 pattern = f'({x})'
                                 check = check_presence(pattern, chk_text)
                                 
@@ -199,7 +207,7 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                     for sr in srs:
                                         if len(sr) == 0: continue
                                         a = x.split(sep = connect[0])
-                                        if shuffle == False:
+                                        if shuffle == False or syn_count != 3:
                                                 break
                                         # Adjust the word sequence using shuffle rule                             
                                         pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
@@ -226,7 +234,10 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                 kwics = get_matches(search_keyword, test_tokens, span)
                             
                                 for kwic in kwics:
-                                    x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                    if syn_count == 3:
+                                        x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                    else:
+                                        x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'
                                     pattern = f'({x})'
                                     check = check_presence(pattern, kwic)
                                     
@@ -250,7 +261,7 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                         for sr in srs:
                                             if len(sr) == 0: continue
                                             a = x.split(sep = connect[0])
-                                            if shuffle == False:
+                                            if shuffle == False or syn_count != 3:
                                                 break
                                             # Adjust the word sequence using shuffle rule                                            
                                             pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
