@@ -39,15 +39,16 @@ for r in range(len(syn_csv)):
 TEST = False
 if TEST:
     # Run a quick tests
-    txt = 'Spotted when he had no ppe.'
+    txt = 'The car hit into the cat.'
     tdf = pd.DataFrame({'incident_id':[1052], 'text':[txt]})
-    finds_df = rbfuncts.rule_book_scan(tdf, syn_dict, rul_csv, verbose=True)
+    finds_df = rbfuncts.rule_book_scan(tdf, syn_dict, rul_csv, run_rules=[22], verbose=True)
     finds_row_count = len(list(dict.fromkeys(finds_df[finds_df.finds_list == True].incid_nums)))
     print(f'Number of finds is {finds_row_count}')
     print(finds_df)
 else:
     # Run on sample of 100 incidents
     sample100 = pd.read_csv('sample100.csv', dtype=str)
+    #sample100 = incidents
     finds_df = rbfuncts.rule_book_scan(sample100, syn_dict, rul_csv, run_rules='All')  
     conso_df = finds_df.groupby(['incid_nums'])['incid_cats'].apply(', '.join).reset_index()
     conso_df['incid_cats'] = conso_df['incid_cats'].apply(lambda x: rbfuncts.remove_dups(x))

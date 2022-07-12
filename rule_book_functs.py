@@ -7,8 +7,8 @@ from nltk.tokenize import sent_tokenize
 from nltk.stem import PorterStemmer as stemmer
 #from tqdm.notebook import tqdm
 from tqdm import tqdm
+from datetime import datetime
 import sys
-
 
 
 def isNaN(num):
@@ -55,15 +55,15 @@ def translate_to_regex(rule_part):
         return r'(\b' + r'\b)|(\b'.join([s for s in rule_part.split('_ ') if s]) + r'\b)'
     else:
         return ''
-    
+       
 def check_presence(pattern, string):
     if pattern:
         return bool(re.search(pattern, string))
     else:
         return False
-    
-# Used for keyword in context approach
-def find_pattern(tokens, keyword, check_pre, check_post, check_all, check_void, window):
+
+# Used for basic keyword in context approach
+def find_pattern_basic(tokens, keyword, check_pre, check_post, check_all, check_void, window):
     """
     for a list of tokens finds specified keyword and returns True
     if the neighbourhood of this keyword satisfies pre-, post- or all- context rules
@@ -92,11 +92,53 @@ def find_pattern(tokens, keyword, check_pre, check_post, check_all, check_void, 
     ])
     return final_match    
 
-# Rule book scanner function
+# Used for keyword in context approach (more robust context extraction)
+def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, window):
+    """
+    for a list of tokens finds specified keyword and returns True
+    if the neighbourhood of this keyword satisfies pre-, post- or all- context rules
+    and doesn't contain anything forbidden
+    :param tokens: list of tokens
+    :param keyword: pattern which a token should match
+    :param check_pre: pattern which several previous tokens (concatenated) should match
+    :param check_post: pattern which several subsequent tokens (concatenated) should match
+    :param check_all: pattern which previous tokens + keyword + subsequent tokens should match
+    :param check_void: pattern which previous tokens + keyword + subsequent tokens should NOT match
+    :param window: N of pre and post tokens to consider
+    :return: True/False - whether at least one matching part was found
+    """
+    # extract contexts of keyword (if any found)
+    # check if keyword in sentence
+    any_match = re.search(keyword, doc)
+
+    if any_match is None:
+        return False
+    else:
+        # We want to finad and extract the context of the keyword in the sentence
+        # With a predefined window
+        pre_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+        post_context = "<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+        all_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+        
+        pre_match = re.findall(pre_context, doc)
+        post_match = re.findall(post_context, doc)
+        all_match = re.findall(all_context, doc)
+
+    # Check if any of the given sentences is on list of pre/post/all keywords.
+    pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
+    post_check = any([check_presence(check_post, post) for post in post_match])
+    all_check = any([check_presence(check_all, all_) for all_ in all_match])
+    void_check = any([check_presence(check_void, all_) for all_ in all_match])
+
+    # Perform final tests
+    final_match = (pre_check or post_check or all_check) and not void_check
+    return final_match
+
 # Rule book scanner function
 def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
     
-    finds_list = []
+    time_start = datetime.now()
+    
     finds_pats = []
     incid_nums = []
     incid_cats = []
@@ -142,7 +184,6 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
         search_keyword = rules.keyword[r]
 
         def add_and_next():
-            finds_list.append(check)
             finds_pats.append(pattern)
             incid_nums.append(irn)
             incid_cats.append(cat)
@@ -157,8 +198,13 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
             sys.stdout.write('\r')
             # the exact output you're looking for:
             per_found = round(100*finds_count/len(incidents), 1)
-            out_str = f'{row+1}/{len(incidents)} [{finds_count}] {per_found}% classified...'
-            sys.stdout.write(out_str)
+            timer_now = datetime.now()
+            diff_time = f'{round(((timer_now - time_start).seconds)/(60*60), 2)} hrs'
+            curr_rown = row+1
+            total_ros = len(incidents)
+            per_throu = round(100*curr_rown/total_ros, 1)
+            outpt_str = f'{curr_rown:,}/{total_ros:,} [{finds_count:,}] {diff_time} {per_found}% classified ({per_throu}% through)...'
+            sys.stdout.write(outpt_str)
             sys.stdout.flush()
             
             flag = False
@@ -175,15 +221,113 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                     if flag == True: break
                     for second_syn in pos_2nd: 
                         if flag == True: break
-                        for third_syn in pos_3rd:  
-                            if flag == True: break                            
-                            
-                            if search_keyword == '-':
-                                
-                                if syn_count == 3:
+                        
+                        if syn_count == 3: 
+                            for third_syn in pos_3rd:  
+                                if search_keyword == '-':
                                     x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                    pattern = f'({x})'
+                                    check = check_presence(pattern, chk_text)
+                                    
+                                    if isNaN(voids):
+                                        void_check = False
+                                    else:    
+                                        for void in voids.split(sep = ', '):
+                                            void_check = check_presence(f'\\b{void}', chk_text)
+                                            if void_check: break
+                                    
+                                    if check and not void_check: 
+                                        if verbose: 
+                                            print(f'\n{check}: {pattern}')
+                                            print('Goto: Next rule...')
+                                        add_and_next()    
+                                        finds_count+=1
+                                        flag = True                                
+                                        break
+                                        
+                                    else:
+                                        for sr in srs:
+                                            if len(sr) == 0: continue
+                                            a = x.split(sep = connect[0])
+                                            if shuffle == False or syn_count != 3:
+                                                break
+                                            # Adjust the word sequence using shuffle rule                             
+                                            pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
+                                            rev_check = check_presence(pattern, chk_text)
+                                            
+                                            if isNaN(voids):
+                                                void_check = False
+                                            else:    
+                                                for void in voids.split(sep = ', '):
+                                                    void_check = check_presence(void, chk_text)
+                                                    if void_check: break
+                                                                
+                                            if rev_check and not void_check:
+                                                if verbose: 
+                                                    print(f'\n{rev_check}: {pattern} ---Shuffled')
+                                                    print('Goto: Next rule...')
+                                                finds_count+=1
+                                                add_and_next()  
+                                                flag = True                                                               
+                                                break
+                                    
                                 else:
-                                    x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'    
+                                    test_tokens = tokenize(chk_text)
+                                    kwics = get_matches(search_keyword, test_tokens, span)
+
+                                    for kwic in kwics:
+                                        if syn_count == 3:
+                                            x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
+                                        else:
+                                            x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'
+                                        pattern = f'({x})'
+                                        check = check_presence(pattern, kwic)
+                                        
+                                        if isNaN(voids):
+                                            void_check = False
+                                        else:    
+                                            for void in voids.split(sep = ', '):
+                                                void_check = check_presence(void, chk_text)
+                                                if void_check: break
+                                        
+                                        if check and not void_check: 
+                                            if verbose:
+                                                print(f'\n{rev_check}: {pattern}')
+                                                print('Goto: Next rule...')
+                                            finds_count+=1
+                                            add_and_next()      
+                                            flag = True                             
+                                            break
+
+                                        else:
+                                            for sr in srs:
+                                                if len(sr) == 0: continue
+                                                a = x.split(sep = connect[0])
+                                                if shuffle == False or syn_count != 3:
+                                                    break
+                                                # Adjust the word sequence using shuffle rule                                            
+                                                pattern = f'({a[sr[0]]}{connect[0]}{a[sr[1]]}{connect[1]}{a[sr[2]]})'
+                                                rev_check = check_presence(pattern, chk_text)
+                                                
+                                                if isNaN(voids):
+                                                    void_check = False
+                                                else:    
+                                                    for void in voids.split(sep = ', '):
+                                                        void_check = check_presence(void, chk_text)
+                                                        if void_check: break
+                                                
+                                                if rev_check and not void_check:  
+                                                    if verbose: 
+                                                        print(f'\n{rev_check}: {pattern} ---Shuffled')
+                                                        print('Goto: Next rule...')
+                                                    finds_count+=1
+                                                    add_and_next()  
+                                                    flag = True                                 
+                                                    break
+                        # Perform two synonym scan
+                        else:
+                            if search_keyword == '-':
+                                x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'    
                                 pattern = f'({x})'
                                 check = check_presence(pattern, chk_text)
                                 
@@ -219,7 +363,7 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                             for void in voids.split(sep = ', '):
                                                 void_check = check_presence(void, chk_text)
                                                 if void_check: break
-                                                             
+                                                            
                                         if rev_check and not void_check:
                                             if verbose: 
                                                 print(f'\n{rev_check}: {pattern} ---Shuffled')
@@ -232,12 +376,9 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                             else:
                                 test_tokens = tokenize(chk_text)
                                 kwics = get_matches(search_keyword, test_tokens, span)
-                            
+
                                 for kwic in kwics:
-                                    if syn_count == 3:
-                                        x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}{connect[1]}{third_syn.strip()}'
-                                    else:
-                                        x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'
+                                    x = f'{first_syn.strip()}{connect[0]}{second_syn.strip()}'
                                     pattern = f'({x})'
                                     check = check_presence(pattern, kwic)
                                     
@@ -247,7 +388,7 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
                                         for void in voids.split(sep = ', '):
                                             void_check = check_presence(void, chk_text)
                                             if void_check: break
-                                     
+                                    
                                     if check and not void_check: 
                                         if verbose:
                                             print(f'\n{rev_check}: {pattern}')
@@ -286,7 +427,6 @@ def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
         print('\n')
     out_df = pd.DataFrame(data=incid_nums, columns=['incid_nums'])
     out_df['finds_pats'] = finds_pats
-    out_df['finds_list'] = finds_list
     out_df['incid_cats'] = incid_cats
     return(out_df)
 
