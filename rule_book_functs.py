@@ -134,7 +134,80 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     final_match = (pre_check or post_check or all_check) and not void_check
     return final_match
 
-# Rule book scanner function
+# Function to categorize text using simple find pattern approach
+def categorize_text(doc, rules, window=5):
+    """
+    to each text (list of tokens) in a df assigns incident categories based on rules from rules df
+    can assign several categories or none at all
+    :param text_df: dataframe with a mandatory column "tokens" - list of strings, result of text tokenization
+    :param rules: dataframe with rules (rule_book file)
+    :param window: how may words to consider context
+    :return: None, adds "categories" column to text_df, where categories are stored as concatenated strings
+    """
+
+    # Category indicators are stored in a bool array (n_texts, n_cats)
+    # which is updated as the rules are checked
+    categories = list(set(rules["group"])) # Use set to remove duplicate groups (each group can have > 1 rule)
+
+    cat_dict = {cat: i for i, cat in enumerate(categories)}
+    category_indicators = [False] * len(categories)
+
+    num_rules = len(rules['group'])
+
+    for i in range(num_rules):
+        finds = find_pattern(
+            doc=doc,
+            keyword=rules["keyword"][i],
+            check_pre=rules["rules_pre"][i],
+            check_post=rules["rules_post"][i],
+            check_all=rules["rules_all"][i],
+            check_void=rules["voids"][i],
+            window=window,
+        )
+
+        # Update if found, True | False >>> True
+        category_indicators[cat_dict[rules["group"][i]]] = (
+            finds | category_indicators[cat_dict[rules["group"][i]]]
+        )
+
+    finds = [
+        (
+            rules['group'][j],
+            find_pattern(
+                doc=doc,
+                keyword=rules["keyword"][j],
+                check_pre=rules["rules_pre"][j],
+                check_post=rules["rules_post"][j],
+                check_all=rules["rules_all"][j],
+                check_void=rules["voids"][j],
+                window=window,
+            )
+        ) for j in range(num_rules)
+    ]
+
+    # Filter out the True (finds) = 1 (0 would be False)
+    output = list(filter(lambda x: x[1], finds))
+    # Remove the True tags and just present a list of the unique categories
+    output = list(set([x[0] for x in output]))
+
+    return output
+
+# Rule book (quick) scanner function
+def quick_rule_book_scan(rules, docs): 
+
+    # Transform columns to regular expression. 
+    rules["keyword"] = [x.replace("*", "[a-zA-Z'-]*") + r"\b" for x in rules["keyword"]]
+    rules["rules_pre"] = [translate_to_regex(x) for x in rules["rules_pre"]]
+    rules["rules_post"] = [translate_to_regex(x) for x in rules["rules_post"]]
+    rules["rules_all"] = [translate_to_regex(x) for x in rules["rules_all"]]
+    rules["voids"] = [translate_to_regex(x) for x in rules["voids"]]
+
+    # Clean all texts from request
+    categories = [categorize_text(doc, rules, window = 12) for doc in docs]
+
+    return (categories)
+
+# Rule book (syn) scanner function
 def rule_book_scan(incidents, syn_dict, rules, run_rules='All', verbose=False):
     
     time_start = datetime.now()
