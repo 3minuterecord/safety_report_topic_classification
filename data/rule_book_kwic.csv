@@ -24,6 +24,7 @@ covid,covid*,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnos
 covid,pcr,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
 covid,rt-pcr,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
 covid,symptoms,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
+covid,tested,,,ip.*test.*positive.*trace.*,
 back injury,back,hurt_ twisted_ soreness in_ sudden pinch_ strain.*_ irritation to_ discomfort to_ contusion to,pain_ discomfort_ muscle spasm_ strain.*_ twinge,discomfort (.*) back_ landed (.*) back_ severe (.*) pain_ pain in (.*) area_ felt pain (.*) lower_ felt pain (.*) upper_ experienced pain (.*) lower_ experienced pain (.*) upper_ pain (.*) lower_ experienced pain (.*) upper_ reported.* back injury_ reported.* back condition_ injur.* back_ pain to_ aggravate.*back.*condition,vehicle_ truck_ car_ back side_ reversed back_ back of_ back off
 fall from or working at height issue,height,,,working (.*) fell,object_ weighing
 fall from or working at height issue,fall*,,,working (.*) fell_ without (.*) protection_ step ladder_ ladder_ fall.*miss.*colleague.*_ fall.*miss.*ip.*_ fall.*miss.*worker.*_ fall.*miss.*employee.*_ falling object ,object_ weighing_ slip.*
@@ -63,7 +64,7 @@ fuel spill or leak,spill*,fuel_ diesel_ petrol_ gas,fuel_ diesel_ petrol_ gas_ h
 fuel spill or leak,fuel,release of,,fuel.*spill.*,
 hydraulic fluid or oil leak,leak*,hydraulic_ oil,hydraulic_ oil,,
 hydraulic fluid or oil leak,fluid*,hydraulic_ oil,,,
-hydraulic fluid or oil leak,hydraulic,minor spill_ major spill,leak.*_spill_ drip.*_ was released from,,
+hydraulic fluid or oil leak,hydraulic,minor spill_ major spill,leak.*_spill_ drip.*_ was released from_ hose.*failed,,
 hydraulic fluid or oil leak,oil,minor spill_ major spill,leak.*_ spill_ drip.*_ was released from,,
 fire,fire*,onset_ started_ broke_out_ caught_ incident,started_ damage_ occur.*due to_ incident,extinguisher.*used,false alarm_ water hose checks_ line of fire
 fire,smok*,overheat.*and,coming from_ from.*engine,,
@@ -171,6 +172,8 @@ hazardous materials or work,sewage,analyse.*for_ sample.*for_ test.*for,,worker.
 hazardous materials or work,co,high reading_ high level,,,
 hazardous materials or work,effluent,located_ expos.*to_ analyse.*for_ sample.*for_ test.*for_ found_ discharge.* of,discharge,,
 hazardous materials or work,concrete,,,concrete expos.*_ expose.*to.*concrete,
+hazardous materials or work,sensor,,,co.*sensor.*activated,
+hazardous materials or work,gas,,cylinder.*unsafe,,
 general illness or health issue,ach*,,,stomach (.*) aching_ stomach (.*) ach_ feeling unwell_ felt unwell_ illness_ non-work related illness,
 general illness or health issue,heart,passed out_ felt_ struggling with, passed out,heart attack,
 general illness or health issue,unwell,passed out_ felt_ complained_ feeling, passed out,unwell and fainted_ unwell (.*) fainted_ fainted_ took.*sickness_ with sickness,
@@ -246,7 +249,7 @@ site compliance or practice issue,emergency,,,emergency.*stop.*inadvertently.*ac
 site compliance or practice issue,lift*,no document.*for_ no.*plan.*for_ no.*permit.*for,,,
 site compliance or practice issue,modif*,,without approval*_ out.*plan_ out.* agree.*,,
 site compliance or practice issue,compliance,,,not.*compliance.*standard.*_ non.*compliance.*requirement.*,
-site compliance or practice issue,procedure,failure.*follow,without approval*_ out.*plan_ out.* agree.*_ not in place_ were not captured,,
+site compliance or practice issue,procedure,failure.*follow_ not.*aware.*of,without approval*_ out.*plan_ out.* agree.*_ not in place_ were not captured,,
 site compliance or practice issue,restrict*,,,breached.*restriction.*_ enter.*work.*area,
 site compliance or practice issue,risk,uncontrolled,,,
 site compliance or practice issue,rams,unsuitable,,unsuitable.*for.*task,
@@ -263,6 +266,7 @@ site compliance or practice issue,observed,,,riding.*back.*mule,
 site compliance or practice issue,service,tag.*out of,,,
 site compliance or practice issue,zone,,,inside.*exclusion.*zone,
 site compliance or practice issue,ptw,without.*work_ not captured_ with out_ without valid,not in place_ were not captured,during.* audit_ failed.* section_ modif.*without.*permit_ without permit_ with out permit_ without.*work_ did not have.*permit_ no permit.*,
+site compliance or practice issue,zone,,,found.*within.*exclusion.*zone,
 confined space non-conformance or issue,confine*,non-compliance_ non compliance_ fail.*to comply_ infringement.*rules relating to_ violating_ in violation_ breach of,space permit_ space attendant_ space entry without_ space.*procedure.*violat.*_ space.*entry.*procedure,entered.*confined.*without_ no confined space entry_ without.*confined space entry_ watch.*left.*while.*still.*confined space,
 confined space non-conformance or issue,crawl*,,,crawled.*into.*pipe_ lsr breach,
 confined space non-conformance or issue,air,,,breathing.*air.*supply,

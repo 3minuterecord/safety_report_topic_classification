@@ -193,7 +193,7 @@ def categorize_text(doc, rules, window=5):
     return output
 
 # Rule book (quick) scanner function
-def quick_rule_book_scan(rules, docs): 
+def kwic_rule_book_scan(rules, docs): 
 
     # Transform columns to regular expression. 
     rules["keyword"] = [x.replace("*", "[a-zA-Z'-]*") + r"\b" for x in rules["keyword"]]
