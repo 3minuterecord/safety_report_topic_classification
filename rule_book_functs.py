@@ -48,7 +48,7 @@ def translate_to_regex(rule_part):
     converts rule_book rules to regex format;
     drops trailing separators in process
     """
-    if isinstance(rule_part, str):
+    if isinstance(rule_part, str): # If rule part is a string...
         rule_part = re.sub(r"\s{2,}", " ", rule_part)
         rule_part = re.sub(r'\\\\b', r'\\b', rule_part)
         
@@ -170,9 +170,14 @@ def categorize_text(doc, rules, window=5):
             finds | category_indicators[cat_dict[rules["group"][i]]]
         )
 
+    # Check doc for each rule in the rule book
+    # Create list of Group, Bool, e.g., ['Slips & Trips', True]
     finds = [
         (
             rules['group'][j],
+            # Find pattern returns the result of the complete context check
+            # Applying pre, post, all and void checks
+            # Returns true if rule checks out for doc/text
             find_pattern(
                 doc=doc,
                 keyword=rules["keyword"][j],

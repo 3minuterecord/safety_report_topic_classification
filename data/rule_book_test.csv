@@ -1,3 +1,3 @@
 group,keyword,rules_pre,rules_post,rules_all,voids
-eye injury or irritation,eye*,something.*in_ swell.*_ swollen_ dust.*in_ particle.*in_ discomfort,,irritation_ foreign body_ foreign object_ irritation (.*) eye_ pain in (.*) eye_ fell (.*) eye_ fall (.*) eye_ debris (.*) eye_ pain to,
-site compliance or practice issue,permit,without.*work_ not captured,not in place_ were not captured,during.* audit_ failed.* section_ modif.*without.*permit_ wothout permit_ with out permit_ without.*work,
+eye injury or irritation,eye*,,,fp.*eye.*{worker}_ spanner in {eye},
+site compliance or practice issue,permit,,,during.* audit_ failed.* section_ modif.*without.*permit_ wothout permit_ with out permit_ without.*work,
