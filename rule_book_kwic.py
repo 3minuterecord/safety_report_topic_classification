@@ -37,7 +37,12 @@ if run_choice == 'y':
 else:
       docs = pd.read_csv('temp_sample.csv')        
 
-categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"])
+# Load the synonym database
+syns_data = pd.read_csv('synonyms.csv')
+syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
+
+# Get categories
+categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data)
 
 # Now tidy up the presentation of the output for printing
 # This will help with analysis/review of classifications and improvements to rule-book

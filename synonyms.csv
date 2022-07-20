@@ -21,7 +21,7 @@ mech_component_syns,"hydraulic hose, hyd fluid, diesel, petrol, connector, hydra
 non_work_syns,non-work related
 object_syns,"post, wall, scaffold, bollard"
 observed_syns,"observed, witnessed, seen, spotted, was"
-pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed, swell, swelling, swollen"
+pain_syns,"pain, discomfort, soreness, hurt, something in, grit, swelling, swollen, dust, particle, irritation, foreign, fb, fp, debris, felt, blew, blown, laceration, struck, hit, banged, dirt, sprayed, swell, swelling, swollen"
 ppe_syns,"ppe, gloves, glasses, goggles, protective"
 release_syns,"release, spill, discharge, contained, loss, lost, to grade, to the grade, to soil, to the soil, suffered, contain, onto the ground"
 slip_syns,"slipped, tripped, slip, trip"

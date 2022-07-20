@@ -43,7 +43,7 @@ def get_matches(keyword, tokens, span):
     matches = [(' '.join(tokens[max(0, i - span - 1):i + span + 1])) for i, tok in enumerate(tokens) if re.match(keyword, tok)]
     return(matches)
 
-def translate_to_regex(rule_part):
+def translate_to_regex_simple(rule_part):
     """
     converts rule_book rules to regex format;
     drops trailing separators in process
@@ -55,6 +55,100 @@ def translate_to_regex(rule_part):
         return r'(\b' + r'\b)|(\b'.join([s for s in rule_part.split('_ ') if s]) + r'\b)'
     else:
         return ''
+ 
+def mutate_syn(syns, syns_db, rule, num):
+    syn_rules = []
+    if num == 1:    
+        syn_raw = syns[0]
+        syn = re.sub(r"[\([{})\]]", '', syn_raw)
+        found_syn = syns_db.loc[(syns_db['syn'] == syn)]
+        for keyword in found_syn.iloc[0, 1].split(', '):
+            syn_rules.append(re.sub(syn_raw, keyword, rule))
+        syn_rules = '_ '.join(syn_rules)
+        return(syn_rules)
+    elif num == 2:
+        syn_raw_1 = syns[0]
+        syn_1 = re.sub(r"[\([{})\]]", '', syn_raw_1)
+        found_syn_1 = syns_db.loc[(syns_db['syn'] == syn_1)]
+
+        syn_raw_2 = syns[1]
+        syn_2 = re.sub(r"[\([{})\]]", '', syn_raw_2)
+        found_syn_2 = syns_db.loc[(syns_db['syn'] == syn_2)]
+
+        for keyword_1 in found_syn_1.iloc[0, 1].split(', '):
+            for keyword_2 in found_syn_2.iloc[0, 1].split(', '):
+                pass_1 = re.sub(syn_raw_1, keyword_1, rule)
+                pass_2 = re.sub(syn_raw_2, keyword_2, pass_1)
+                syn_rules.append(pass_2)
+        syn_rules = '_ '.join(syn_rules)
+        return(syn_rules)
+    elif num == 3:
+        syn_raw_1 = syns[0]
+        syn_1 = re.sub(r"[\([{})\]]", '', syn_raw_1)
+        found_syn_1 = syns_db.loc[(syns_db['syn'] == syn_1)]
+
+        syn_raw_2 = syns[1]
+        syn_2 = re.sub(r"[\([{})\]]", '', syn_raw_2)
+        found_syn_2 = syns_db.loc[(syns_db['syn'] == syn_2)]
+
+        syn_raw_3 = syns[2]
+        syn_3 = re.sub(r"[\([{})\]]", '', syn_raw_3)
+        found_syn_3 = syns_db.loc[(syns_db['syn'] == syn_3)]
+
+        for keyword_1 in found_syn_1.iloc[0, 1].split(', '):
+            for keyword_2 in found_syn_2.iloc[0, 1].split(', '):
+                for keyword_3 in found_syn_3.iloc[0, 1].split(', '):
+                    pass_1 = re.sub(syn_raw_1, keyword_1, rule)
+                    pass_2 = re.sub(syn_raw_2, keyword_2, pass_1)
+                    pass_3 = re.sub(syn_raw_3, keyword_3, pass_2)
+                    syn_rules.append(pass_3)
+        syn_rules = '_ '.join(syn_rules)
+        return(syn_rules)    
+ 
+ 
+def translate_to_regex(rule_part, syns_db):
+    """
+    converts rule_book rules to regex format;
+    drops trailing separators in process
+    performs preprocessing to mutate synonyms & expand rule set for all permutations
+    """
+    if isinstance(rule_part, str): # If rule part is a string...
+        
+        # 1st, we need to preprocess and mutate synonyms if they are found in rules
+        # 1st step is to split the rule set into individual rules
+        split_rule = rule_part.split('_ ')
+        # create an empty list to hold the mutates rule set
+        out_rule = []
+
+        for rule in split_rule:
+            # Check for presence of synonym, e.g., {eye}
+            syns = re.findall("{[a-zA-Z'-]*}", rule)
+            # How many do we find?
+            syn_count = len(syns)
+            # No process based on how many we find (max number is 3, min is 0)
+            if syn_count == 1:
+                syn_rules = mutate_syn(syns, syns_db, rule, 1)
+                out_rule.append(syn_rules)
+            elif syn_count == 2:
+                syn_rules = mutate_syn(syns, syns_db, rule, 2)
+                out_rule.append(syn_rules)
+            elif syn_count == 3:
+                syn_rules = mutate_syn(syns, syns_db, rule, 3)
+                out_rule.append(syn_rules)
+            else:       
+                # Do nothin, no mutation required as no synonym has been specified
+                out_rule.append(rule)
+                
+        # Join back to single rule set        
+        out_rule = '_ '.join(out_rule)
+        
+        # Now translate to regex
+        rule_part = re.sub(r"\s{2,}", " ", out_rule)
+        rule_part = re.sub(r'\\\\b', r'\\b', rule_part)
+        
+        return r'(\b' + r'\b)|(\b'.join([s for s in rule_part.split('_ ') if s]) + r'\b)'
+    else:
+        return '' 
        
 def check_presence(pattern, string):
     if pattern:
@@ -197,19 +291,24 @@ def categorize_text(doc, rules, window=5):
 
     return output
 
-# Rule book (quick) scanner function
-def kwic_rule_book_scan(rules, docs): 
+# Function to replace unused text in synonym dictionary keywords
+def replace_syns(in_str):
+    mod_str = re.sub('_syns', '', in_str) 
+    return(mod_str)
+
+# Rule book (kwic) scanner function
+# 'kwic' = keyword in context
+def kwic_rule_book_scan(rules, docs, syns_db): 
 
     # Transform columns to regular expression. 
     rules["keyword"] = [x.replace("*", "[a-zA-Z'-]*") + r"\b" for x in rules["keyword"]]
-    rules["rules_pre"] = [translate_to_regex(x) for x in rules["rules_pre"]]
-    rules["rules_post"] = [translate_to_regex(x) for x in rules["rules_post"]]
-    rules["rules_all"] = [translate_to_regex(x) for x in rules["rules_all"]]
-    rules["voids"] = [translate_to_regex(x) for x in rules["voids"]]
-
+    rules["rules_pre"] = [translate_to_regex(x, syns_db) for x in rules["rules_pre"]]
+    rules["rules_post"] = [translate_to_regex(x, syns_db) for x in rules["rules_post"]]
+    rules["rules_all"] = [translate_to_regex(x, syns_db) for x in rules["rules_all"]]
+    rules["voids"] = [translate_to_regex(x, syns_db) for x in rules["voids"]]
+    #rules.to_csv('rules_out_temp.csv')
     # Clean all texts from request
     categories = [categorize_text(doc, rules, window = 12) for doc in docs]
-
     return (categories)
 
 # Rule book (syn) scanner function
