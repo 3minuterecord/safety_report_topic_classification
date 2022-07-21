@@ -11,11 +11,13 @@ import rule_book_functs as rbfuncts
 
 # Load raw incident data
 incidents = pd.read_csv("data/source/20220413_D1_Incidents.csv", dtype=str)  
+osha_incs = pd.read_csv("data/source/OSHA_January2015toJuly2021.csv", dtype=str)  
 
 # Load the 'kwic' rule definitions
 # 'kwic' = Keyword in context
 rul_csv = pd.read_csv('data/rule_book_kwic.csv')
 
+# Some clean up for Wood dataset
 # Concatenate some of the fields to make the 'text' field for searching
 incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
 incidents['text'] = (
@@ -23,9 +25,25 @@ incidents['text'] = (
         incidents['FullDescription'].astype(str).fillna('') + ' ' + 
         incidents['ImmediateAction'].astype(str).fillna('')
 ).str.lower()
+incidents['dataset'] = 'ORGP'
 
 # We only need the incident ID and the text for now
-incidents = incidents[['incident_id', 'text']]
+incidents = incidents[['incident_id', 'dataset', 'text']]
+
+# Some clean up for OSHA dataset
+# Concatenate some of the fields to make the 'text' field for searching
+osha_incs.rename(columns={'ID': 'incident_id'}, inplace=True)
+osha_incs['text'] = (
+        osha_incs['EventTitle'].astype(str).fillna('') + ' ' + 
+        osha_incs['Final Narrative'].astype(str).fillna('')
+).str.lower()
+osha_incs['dataset'] = 'OSHA'
+
+# We only need the incident ID and the text for now
+osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
+
+# Combine OSHA and Wood datasets
+incidents = pd.concat([incidents, osha_incs])
 
 # Run on sample of 100 incidents
 # Run on last or create new (run on last to improve rules)
@@ -56,12 +74,14 @@ for entry in categories:
 # Convert to a simple datafrae
 out_df = pd.DataFrame(cats, columns=['category'])
 out_df['text'] = docs['text'].tolist()
+out_df['dset'] = docs['dataset'].tolist()
 
 # Print to console in a review-friendly manner
 for r in range(len(out_df)):
         print(out_df.category[r])
         print('='*len(out_df.category[r]))
         print(out_df.text[r])
+        print('~ ' + out_df.dset[r])
         print('\n')
 
 unclassified_count = len(out_df.loc[(out_df.category == '*** Not Classified')])
