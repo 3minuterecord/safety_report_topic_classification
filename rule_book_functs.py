@@ -5,7 +5,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.stem import PorterStemmer as stemmer
-#from tqdm.notebook import tqdm
+from tqdm.notebook import tqdm
 from tqdm import tqdm
 from datetime import datetime
 import sys
@@ -229,7 +229,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     return final_match
 
 # Function to categorize text using simple find pattern approach
-def categorize_text(doc, rules, window=5):
+def categorize_text(doc, rules, focus_group, window=5):
     """
     to each text (list of tokens) in a df assigns incident categories based on rules from rules df
     can assign several categories or none at all
@@ -239,6 +239,10 @@ def categorize_text(doc, rules, window=5):
     :return: None, adds "categories" column to text_df, where categories are stored as concatenated strings
     """
 
+    if focus_group != 'all':
+        rules = rules.loc[(rules['group'] == focus_group)]
+        rules.reset_index(drop=True, inplace=True)
+    
     # Category indicators are stored in a bool array (n_texts, n_cats)
     # which is updated as the rules are checked
     categories = list(set(rules["group"])) # Use set to remove duplicate groups (each group can have > 1 rule)
@@ -247,7 +251,6 @@ def categorize_text(doc, rules, window=5):
     category_indicators = [False] * len(categories)
 
     num_rules = len(rules['group'])
-
     for i in range(num_rules):
         finds = find_pattern(
             doc=doc,
@@ -298,7 +301,7 @@ def replace_syns(in_str):
 
 # Rule book (kwic) scanner function
 # 'kwic' = keyword in context
-def kwic_rule_book_scan(rules, docs, syns_db): 
+def kwic_rule_book_scan(rules, docs, syns_db, run_rules='all'): 
 
     # Transform columns to regular expression. 
     rules["keyword"] = [x.replace("*", "[a-zA-Z'-]*") + r"\b" for x in rules["keyword"]]
@@ -308,7 +311,7 @@ def kwic_rule_book_scan(rules, docs, syns_db):
     rules["voids"] = [translate_to_regex(x, syns_db) for x in rules["voids"]]
     #rules.to_csv('rules_out_temp.csv')
     # Clean all texts from request
-    categories = [categorize_text(doc, rules, window = 12) for doc in docs]
+    categories = [categorize_text(doc, rules, window = 12, focus_group=run_rules) for doc in tqdm(docs)]
     return (categories)
 
 # Rule book (syn) scanner function
