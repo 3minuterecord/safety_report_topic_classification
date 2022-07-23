@@ -242,7 +242,10 @@ def categorize_text(doc, rules, focus_group, window=5):
     if focus_group != 'all':
         rules = rules.loc[(rules['group'] == focus_group)]
         rules.reset_index(drop=True, inplace=True)
-    
+   
+    if len(rules) == 0:
+        sys.exit(f"Error: '{focus_group}' is not a recogised rule...")
+            
     # Category indicators are stored in a bool array (n_texts, n_cats)
     # which is updated as the rules are checked
     categories = list(set(rules["group"])) # Use set to remove duplicate groups (each group can have > 1 rule)

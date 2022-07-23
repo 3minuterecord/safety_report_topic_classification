@@ -99,6 +99,7 @@ else:
 
 unclassified_count = len(out_df.loc[(out_df.category == '*** Not Classified')])
 classified_count = len(out_df) - unclassified_count
+classified_count = "{:,}".format(classified_count)
 classified_percent = round(100 - round(100*(unclassified_count / len(out_df)), 1), 1)
 
 final_str = f' Total classified: {classified_percent}% ({classified_count})'
