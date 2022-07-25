@@ -1,6 +1,7 @@
 from unicodedata import category
 import pandas as pd
 import rule_book_functs as rbfuncts
+from tqdm.notebook import tqdm
 
 # Description:
 # +--------------------------------------------------------------------+
@@ -67,8 +68,14 @@ syns_data = pd.read_csv('synonyms.csv')
 syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
 
 # Get categories
-rule_extent = input("Run all rules (state: 'all') or selected rule (e.g., state: 'slips & trips'): ")
-categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_extent)
+rule_extent = input("Run all rules (state: 'all') or selected rule (e.g., state: 'slips & trips') or debug (d): ")
+if rule_extent == 'ds':
+        topic_groups = set(list(rul_csv.group))
+        for group in topic_groups:
+                print('Checking: ', group)
+                categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=group)
+else:        
+        categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_extent)
 
 # Now tidy up the presentation of the output for printing
 # This will help with analysis/review of classifications and improvements to rule-book

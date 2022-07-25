@@ -186,6 +186,11 @@ def find_pattern_basic(tokens, keyword, check_pre, check_post, check_all, check_
     ])
     return final_match    
 
+# Function to flatten a list of lists
+# [[1, 2], [1, 2, 3]] >> [1, 2, 1, 2, 3]
+def flatten(list_of_lists):
+    return [x for xs in list_of_lists for x in xs]
+
 # Used for keyword in context approach (more robust context extraction)
 def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, window):
     """
@@ -201,31 +206,47 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     :param window: N of pre and post tokens to consider
     :return: True/False - whether at least one matching part was found
     """
-    # extract contexts of keyword (if any found)
-    # check if keyword in sentence
-    any_match = re.search(keyword, doc)
+    
+    # Break the text into sentences
+    # Each sentence is checked separately
+    sen_toks = sent_tokenize(doc)
+    
+    # If there is no keyword it will be flagged as '-'
+    # In this case, we just check each sentence for the rule set
+    if keyword == '-\\b':
+        all_check = any([check_presence(check_all, all_) for all_ in sen_toks])
+        void_check = any([check_presence(check_void, all_) for all_ in sen_toks])
+        final_match = all_check and not void_check
+            
+    else:    
+        # Extract contexts of keyword (if any found)
+        # Check if keyword is in sentence
+        any_match = re.search(keyword, doc)
 
-    if any_match is None:
-        return False
-    else:
-        # We want to finad and extract the context of the keyword in the sentence
-        # With a predefined window
-        pre_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>".replace('<keyword>', str(keyword)).replace('<window>', str(window))
-        post_context = "<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
-        all_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+        if any_match is None:
+            return False
+        else:
+            # We want to finad and extract the context of the keyword in the sentence
+            # With a predefined window
+            pre_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+            post_context = "<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+            all_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))
+            
+            # Check each sentence and extract each context from each sentence
+            # This could produce list of lists, hence we need to flatten.
+            pre_match = flatten([re.findall(pre_context, t) for t in sen_toks]) 
+            post_match = flatten([re.findall(post_context, t) for t in sen_toks])
+            all_match = flatten([re.findall(all_context, t) for t in sen_toks])
+
+        # Check if any of the given sentences is on list of pre/post/all keywords.
+        pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
+        post_check = any([check_presence(check_post, post) for post in post_match])
+        all_check = any([check_presence(check_all, all_) for all_ in all_match])
+        void_check = any([check_presence(check_void, all_) for all_ in all_match])
+
+        # Perform final tests
+        final_match = (pre_check or post_check or all_check) and not void_check
         
-        pre_match = re.findall(pre_context, doc)
-        post_match = re.findall(post_context, doc)
-        all_match = re.findall(all_context, doc)
-
-    # Check if any of the given sentences is on list of pre/post/all keywords.
-    pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
-    post_check = any([check_presence(check_post, post) for post in post_match])
-    all_check = any([check_presence(check_all, all_) for all_ in all_match])
-    void_check = any([check_presence(check_void, all_) for all_ in all_match])
-
-    # Perform final tests
-    final_match = (pre_check or post_check or all_check) and not void_check
     return final_match
 
 # Function to categorize text using simple find pattern approach
