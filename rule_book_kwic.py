@@ -69,13 +69,13 @@ syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
 
 # Get categories
 rule_extent = input("Run all rules (state: 'all') or selected rule (e.g., state: 'slips & trips') or debug (d): ")
-if rule_extent == 'ds':
+if rule_extent == 'd':
         topic_groups = set(list(rul_csv.group))
         for group in topic_groups:
                 print('Checking: ', group)
                 categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=group)
 else:        
-        categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_extent)
+        categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_extent, verb=False)
 
 # Now tidy up the presentation of the output for printing
 # This will help with analysis/review of classifications and improvements to rule-book
@@ -91,8 +91,13 @@ out_df = pd.DataFrame(cats, columns=['category'])
 out_df['text'] = docs['text'].tolist()
 out_df['dset'] = docs['dataset'].tolist()
 
+unclassified_count = len(out_df.loc[(out_df.category == '*** Not Classified')])
+classified_count = len(out_df) - unclassified_count
+classified_count = "{:,}".format(classified_count)
+classified_percent = round(100 - round(100*(unclassified_count / len(out_df)), 1), 1)
+
 if run_choice == 'a':
-        out_df.to_csv('out_df_temp.csv')
+        out_df.to_csv(f'output/{rule_extent}_{classified_count}_out_df_temp.csv')
         print('\n')
 else:
         # Print to console in a review-friendly manner
@@ -103,11 +108,6 @@ else:
                 print(out_df.text[r])
                 print('~ ' + out_df.dset[r])
                 print('\n')
-
-unclassified_count = len(out_df.loc[(out_df.category == '*** Not Classified')])
-classified_count = len(out_df) - unclassified_count
-classified_count = "{:,}".format(classified_count)
-classified_percent = round(100 - round(100*(unclassified_count / len(out_df)), 1), 1)
 
 final_str = f' Total classified: {classified_percent}% ({classified_count})'
 print('+'+'-'*(len(final_str)-1)+'+')

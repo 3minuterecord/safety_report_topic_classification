@@ -191,6 +191,42 @@ def find_pattern_basic(tokens, keyword, check_pre, check_post, check_all, check_
 def flatten(list_of_lists):
     return [x for xs in list_of_lists for x in xs]
 
+def check_apply(sen, rules):
+    if len(rules) != 0:
+        df_scan = pd.DataFrame(rules.split('|'), columns=['pattern'])    
+        df_scan['doc'] = sen
+        df_scan['finds'] = df_scan[['pattern', 'doc']].apply(lambda x: check_presence(*x), axis=1)    
+        find = bool(sum(df_scan['finds']))       
+    else:
+        find = False   
+    return(find)
+
+def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_all, check_void):
+    pre_check, post_check, all_check, void_check = False, False, False, False
+    for sen in sens_pre:
+        pre_check = False
+        if len(check_pre) != 0:
+            pre_check = check_apply(sen, check_pre)
+            if pre_check: break
+            
+    for sen in sens_post:
+        post_check = False        
+        if len(check_post) != 0:
+            post_check = check_apply(sen, check_post)
+            if post_check: break
+            
+    for sen in sens_all:    
+        all_check, void_check = False, False   
+        if len(check_all) != 0:
+            all_check = check_apply(sen, check_all)
+        if len(check_void) != 0:
+            void_check = check_apply(sen, check_void)   
+            if void_check: break 
+
+    final_match = (pre_check or post_check or all_check) and not void_check
+        
+    return(final_match)
+
 # Used for keyword in context approach (more robust context extraction)
 def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, window):
     """
@@ -214,12 +250,29 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     # If there is no keyword it will be flagged as '-'
     # In this case, we just check each sentence for the rule set
     if keyword == '-\\b':
-        all_check = any([check_presence(check_all, all_) for all_ in sen_toks])
-        void_check = any([check_presence(check_void, all_) for all_ in sen_toks])
-        final_match = all_check and not void_check
-            
-    else:    
+        void = False   
+        for all_ in sen_toks:
+            # Very long rule patterns run very slowly, the following method using 
+            # dataframe and an apply function performs significantly better but
+            # TODO - there is still room for optimisation
+            df_scan = pd.DataFrame(check_all.split('|'), columns=['pattern'])    
+            df_scan['doc'] = all_
+            df_scan['finds'] = df_scan[['pattern', 'doc']].apply(lambda x: check_presence(*x), axis=1)   
+            # Alternative approach not used as a bit slower than above during tests... 
+            #df_scan['finds'] = df_scan.apply(lambda x: check_presence(x.pattern, x.doc), axis=1)
+            find = bool(sum(df_scan['finds']))
+            if len(check_void) != 0:
+                df_void = pd.DataFrame(check_void.split('|'), columns=['pattern'])
+                df_void['doc'] = all_
+                df_void['voids'] = df_void[['pattern', 'doc']].apply(lambda x: check_presence(*x), axis=1)
+                void = bool(sum(df_void['voids']))
+            final_match = find and not void    
+            if final_match: break
+ 
+    else:                
         # Extract contexts of keyword (if any found)
+        keyword = keyword.strip()    
+        
         # Check if keyword is in sentence
         any_match = re.search(keyword, doc)
 
@@ -239,18 +292,28 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             all_match = flatten([re.findall(all_context, t) for t in sen_toks])
 
         # Check if any of the given sentences is on list of pre/post/all keywords.
-        pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
-        post_check = any([check_presence(check_post, post) for post in post_match])
-        all_check = any([check_presence(check_all, all_) for all_ in all_match])
-        void_check = any([check_presence(check_void, all_) for all_ in all_match])
+        #post_check = any([check_presence(check_post, post) for post in post_match])
+        #pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
+        #all_check = any([check_presence(check_all, all_) for all_ in all_match])
+        #void_check = any([check_presence(check_void, all_) for all_ in all_match])
 
         # Perform final tests
-        final_match = (pre_check or post_check or all_check) and not void_check
+        #final_match = (pre_check or post_check or all_check) and not void_check
+        
+        final_match = check_apply_all(
+            sens_pre=pre_match, 
+            sens_post=post_match, 
+            sens_all=all_match, 
+            check_pre=check_pre, 
+            check_post=check_post, 
+            check_all=check_all, 
+            check_void=check_void
+            )
         
     return final_match
 
 # Function to categorize text using simple find pattern approach
-def categorize_text(doc, rules, focus_group, window=5):
+def categorize_text(doc, rules, focus_group, window=5, verbose=False):
     """
     to each text (list of tokens) in a df assigns incident categories based on rules from rules df
     can assign several categories or none at all
@@ -259,7 +322,7 @@ def categorize_text(doc, rules, focus_group, window=5):
     :param window: how may words to consider context
     :return: None, adds "categories" column to text_df, where categories are stored as concatenated strings
     """
-
+       
     if focus_group != 'all':
         rules = rules.loc[(rules['group'] == focus_group)]
         rules.reset_index(drop=True, inplace=True)
@@ -275,7 +338,13 @@ def categorize_text(doc, rules, focus_group, window=5):
     category_indicators = [False] * len(categories)
 
     num_rules = len(rules['group'])
-    for i in range(num_rules):
+
+    for i in range(num_rules):            
+        group_name = rules["group"][i]
+        group_name_len = len(group_name)
+        max_group_name_len = 39
+        print_name = group_name + ' ' + '-'*(max_group_name_len - group_name_len - 1)
+        if verbose: print(print_name, end = '\r', flush=True)
         finds = find_pattern(
             doc=doc,
             keyword=rules["keyword"][i],
@@ -285,7 +354,7 @@ def categorize_text(doc, rules, focus_group, window=5):
             check_void=rules["voids"][i],
             window=window,
         )
-
+        
         # Update if found, True | False >>> True
         category_indicators[cat_dict[rules["group"][i]]] = (
             finds | category_indicators[cat_dict[rules["group"][i]]]
@@ -315,7 +384,6 @@ def categorize_text(doc, rules, focus_group, window=5):
     output = list(filter(lambda x: x[1], finds))
     # Remove the True tags and just present a list of the unique categories
     output = list(set([x[0] for x in output]))
-
     return output
 
 # Function to replace unused text in synonym dictionary keywords
@@ -325,7 +393,7 @@ def replace_syns(in_str):
 
 # Rule book (kwic) scanner function
 # 'kwic' = keyword in context
-def kwic_rule_book_scan(rules, docs, syns_db, run_rules='all'): 
+def kwic_rule_book_scan(rules, docs, syns_db, run_rules='all', verb = False): 
 
     # Transform columns to regular expression. 
     rules["keyword"] = [x.replace("*", "[a-zA-Z'-]*") + r"\b" for x in rules["keyword"]]
@@ -335,7 +403,7 @@ def kwic_rule_book_scan(rules, docs, syns_db, run_rules='all'):
     rules["voids"] = [translate_to_regex(x, syns_db) for x in rules["voids"]]
     #rules.to_csv('rules_out_temp.csv')
     # Clean all texts from request
-    categories = [categorize_text(doc, rules, window = 12, focus_group=run_rules) for doc in tqdm(docs)]
+    categories = [categorize_text(doc, rules, window = 12, focus_group=run_rules, verbose=verb) for doc in tqdm(docs)]
     return (categories)
 
 # Rule book (syn) scanner function
