@@ -103,8 +103,9 @@ else:
         # Print to console in a review-friendly manner
         print('\n')
         for r in range(len(out_df)):
-                print(out_df.category[r])
-                print('='*len(out_df.category[r]))
+                cat_title = f'{r+1}: {out_df.category[r]}'
+                print(cat_title)
+                print('='*len(cat_title))
                 print(out_df.text[r])
                 print('~ ' + out_df.dset[r])
                 print('\n')
