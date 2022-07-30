@@ -13,8 +13,9 @@ import time
 
 def main():
         # Load test data
-        out_df = pd.read_csv("test_samples/220730103309_100_sample_scores.csv", dtype=str)  
-                        
+        sample_ref = '220730103309'
+        out_df = pd.read_csv(f"test_samples/{sample_ref}_100_sample_scores.csv", dtype=str)  
+        classified_count = len(out_df)                
         scores = [0]
         for r, doc in enumerate(out_df["text"]):
                 print('\n')
@@ -31,17 +32,19 @@ def main():
                 else:
                         score_tally = f'G: {goods} ({round(100*goods/tots)}%), F: {fairs} ({round(100*fairs/tots)}%), B: {bads} ({round(100*bads/tots)}%)'
                 print(score_tally)
-                # TODO - Add exception handling to this input
-                score = input('Score (1: Good, 2: Fair, 3: Poor): ')
-                score = int(score)
-                scores.append(score)
-        out_df['scores'] = scores
-        
+                # Exception handling for input that is not 1, 2 or 3
+                checkInputType = False
+                while not checkInputType :
+                        score = input('Score (1: Good, 2: Fair, 3: Poor): ')
+                        if score.isnumeric() and int(score) < 4 :
+                                checkInputType = True
+                                score = int(score)
+                                scores.append(score)
+        out_df['scores'] = scores[1:]
         print('Writing scores...')
+        out_df.to_csv(f'scores/{sample_ref}_{classified_count}_scored_dataset.csv')
         print('done \n')
-        
         print(scores)
-       
-        
+              
 if __name__ == "__main__":
         main()
