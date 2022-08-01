@@ -13,7 +13,7 @@ import time
 
 def main():
         # Load test data
-        sample_ref = '220730103309'
+        sample_ref = '2208011723421'
         out_df = pd.read_csv(f"test_samples/{sample_ref}_100_sample_scores.csv", dtype=str)  
         classified_count = len(out_df)                
         scores = [0]
