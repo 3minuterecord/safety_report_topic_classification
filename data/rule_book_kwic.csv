@@ -11,6 +11,8 @@ eye injury or irritation,eye*,something.*in_ swell.*_ swollen_ dust.*in_ particl
 eye injury or irritation,weld*,,,exposed.*weld.*arc,
 eye injury or irritation,flash,arc.*,,,
 vehicle Incident involving animal,vehicle*,animal.*front.*of,,{insectanimal},
+vehicle Incident involving animal,swerv*,,{insectanimal},,
+vehicle Incident involving animal,brake*,,{insectanimal},,
 vehicle Incident involving animal,driving,animal.*front.*of,,{insectanimal},
 vehicle Incident involving animal,car,animal.*front.*of,,{insectanimal},
 vehicle Incident involving animal,struck*,,{insectanimal},,
@@ -312,7 +314,7 @@ confined space non-conformance or issue,crawl*,,,crawled.*into.*pipe_ lsr breach
 confined space non-conformance or issue,air,,,breathing.*air.*supply,
 minor non-injury event,sank,,,foot.* sank.* hole,
 minor non-injury event,delivery,,,unsafe.* delivery,
-head or face injury,-,,,{hurt} .* {head}_ {head} .* {hurt} ,
+head or face injury,-,,,{head}.*{hurt}_ {hurt}.*{head},
 head or face injury,face,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*,sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head
 head or face injury,head,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ jarred their_ jarred his_ jarred her_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head
 head or face injury,forehead,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head

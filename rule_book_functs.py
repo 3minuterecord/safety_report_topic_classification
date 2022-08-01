@@ -216,11 +216,12 @@ def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_
     for sen in sens_all:             
         if len(check_all) != 0:
             all_check = check_apply(sen, check_all) or all_check
+            #print(check_all)
             #print('check 1: ', check_apply(sen, check_all))
             #print('check 2: ', all_check)
-            if all_check: break 
         if len(check_void) != 0:
             void_check = check_apply(sen, check_void)   
+            #print('check voids: ', void_check)
             if void_check: break 
 
     final_match = (pre_check or post_check or all_check) and not void_check
@@ -262,7 +263,9 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             # TODO - there is still room for optimisation
             df_scan = pd.DataFrame(check_all.split('|'), columns=['pattern'])    
             df_scan['doc'] = all_
+            #print(all_)
             df_scan['finds'] = df_scan[['pattern', 'doc']].apply(lambda x: check_presence(*x), axis=1)   
+            #print(df_scan)
             # Alternative approach not used as a bit slower than above during tests... 
             #df_scan['finds'] = df_scan.apply(lambda x: check_presence(x.pattern, x.doc), axis=1)
             find = bool(sum(df_scan['finds']))
@@ -272,6 +275,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
                 df_void['voids'] = df_void[['pattern', 'doc']].apply(lambda x: check_presence(*x), axis=1)
                 void = bool(sum(df_void['voids']))
             final_match = find and not void    
+            #print('chk final match key: ', final_match)
             if final_match: break
  
     else:                
@@ -295,7 +299,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             pre_match = flatten([re.findall(pre_context, t) for t in sen_toks]) 
             post_match = flatten([re.findall(post_context, t) for t in sen_toks])
             all_match = flatten([re.findall(all_context, t) for t in sen_toks])
-            # print(all_match)
+            #print(all_match)
 
         # Perform final tests
         #final_match = (pre_check or post_check or all_check) and not void_check

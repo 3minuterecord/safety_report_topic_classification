@@ -23,8 +23,6 @@ def main():
                 docs_test=docs["text"]                
         else:        
                 sample_ref = input("Enter file ref.: ")
-                # Load incident data
-                sample_ref = '240730103309'
                 docs = pd.read_csv(f"test_samples/{sample_ref}_100_sample_scores.csv", dtype=str)
                 docs_test=docs["text"]
         
