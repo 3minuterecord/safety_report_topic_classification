@@ -203,22 +203,22 @@ def check_apply(sen, rules):
 
 def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_all, check_void):
     pre_check, post_check, all_check, void_check = False, False, False, False
-    for sen in sens_pre:
-        pre_check = False
+    for sen in sens_pre:        
         if len(check_pre) != 0:
-            pre_check = check_apply(sen, check_pre)
+            pre_check = check_apply(sen, check_pre) or pre_check
             if pre_check: break
             
-    for sen in sens_post:
-        post_check = False        
+    for sen in sens_post:      
         if len(check_post) != 0:
-            post_check = check_apply(sen, check_post)
-            if post_check: break
+            post_check = check_apply(sen, check_post) or post_check
+            if post_check: break 
             
-    for sen in sens_all:    
-        all_check, void_check = False, False   
+    for sen in sens_all:             
         if len(check_all) != 0:
-            all_check = check_apply(sen, check_all)
+            all_check = check_apply(sen, check_all) or all_check
+            #print('check 1: ', check_apply(sen, check_all))
+            #print('check 2: ', all_check)
+            if all_check: break 
         if len(check_void) != 0:
             void_check = check_apply(sen, check_void)   
             if void_check: break 
@@ -242,6 +242,11 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     :param window: N of pre and post tokens to consider
     :return: True/False - whether at least one matching part was found
     """
+    
+    # Remove any slashes
+    doc = doc.replace('/', ' ')
+    doc = doc.replace(' / ', ' ')
+    doc = doc.lower()
     
     # Break the text into sentences
     # Each sentence is checked separately
@@ -270,7 +275,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             if final_match: break
  
     else:                
-        # Extract contexts of keyword (if any found)
+        # Remove any whitespace
         keyword = keyword.strip()    
         
         # Check if keyword is in sentence
@@ -290,12 +295,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             pre_match = flatten([re.findall(pre_context, t) for t in sen_toks]) 
             post_match = flatten([re.findall(post_context, t) for t in sen_toks])
             all_match = flatten([re.findall(all_context, t) for t in sen_toks])
-
-        # Check if any of the given sentences is on list of pre/post/all keywords.
-        #post_check = any([check_presence(check_post, post) for post in post_match])
-        #pre_check = any([check_presence(check_pre, pre) for pre in pre_match])
-        #all_check = any([check_presence(check_all, all_) for all_ in all_match])
-        #void_check = any([check_presence(check_void, all_) for all_ in all_match])
+            # print(all_match)
 
         # Perform final tests
         #final_match = (pre_check or post_check or all_check) and not void_check

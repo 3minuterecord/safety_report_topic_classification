@@ -6,9 +6,9 @@ import time
 
 # Description:
 # +--------------------------------------------------------------------+
-# 1. Load raw incident data, concatenate & remove unused fields
-# 2. Load rule book definitions
-# 3. Run rule book function based on 'kwic' & synonyms to classify text
+# 1. Load a test sample using its datetime reference
+# 2. Loop through and manually score each classification
+# 3. Save scores to output file
 # +--------------------------------------------------------------------+
 
 def main():
@@ -28,7 +28,7 @@ def main():
                 goods, fairs, bads = scores.count(1), scores.count(2), scores.count(3)
                 tots = goods + fairs + bads
                 if tots == 0:
-                        score_tally = f'G: {goods}, F: {fairs}, B: {bads}'
+                        score_tally = f'G: {goods}\tF: {fairs}\tB: {bads}'
                 else:
                         score_tally = f'G: {goods} ({round(100*goods/tots)}%), F: {fairs} ({round(100*fairs/tots)}%), B: {bads} ({round(100*bads/tots)}%)'
                 print(score_tally)

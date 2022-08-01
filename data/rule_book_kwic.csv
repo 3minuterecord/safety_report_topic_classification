@@ -42,7 +42,7 @@ back injury,back,{backpain}_ {hurt}_ hurt_ twisted_ soreness in_ sudden pinch_ s
 back injury,vertebrae,hurt_ twisted_ soreness in_ sudden pinch_ strain.*_ irritation to_ discomfort to_ contusion to_ bruis.*to_ graz.*to_ {backpain}_ {hurt},pain_ discomfort_ muscle spasm_ strain.*_ twinge,fractur.*vertebrae,
 back injury,pelvis,{backpain}_ {hurt},,,
 fall from or working at height issue,height,,,{height}.*{equipment}.*{fallingobject}_ working (.*) fell,object_ weighing
-fall from or working at height issue,fall*,,,{height}.*{equipment}.*{fallingobject}_ working (.*) fell_ without (.*) protection_ step ladder_ ladder_ fall.*miss.*colleague.*_ fall.*miss.*ip.*_ fall.*miss.*worker.*_ fall.*miss.*employee.*_ falling object_ curtailed .* fall arrest,object_ weighing_ slip.*
+fall from or working at height issue,fall*,,,{height}.*{equipment}.*{fallingobject}_ working (.*) fell_ without (.*) protection_ step ladder_ ladder_ fall.*miss.*colleague.*_ fall.*miss.*ip.*_ fall.*miss.*worker.*_ fall.*miss.*employee.*_ falling object_ curtailed .* fall arrest_ not using.*fall arrest,object_ weighing_ slip.*
 fall from or working at height issue,basket,,made.*contact_ contacted_ bumped_ came.*contact,,
 fall from or working at height issue,lanyard,shock absorb.*,to deploy_ deployed,,
 fall from or working at height issue,fell,,from.*{height},{height} when {worker} fell,
@@ -330,7 +330,7 @@ offshore transfer,transfer,,,injured.* during.* transfer,
 work vehicle incident,bucket,,,excavator.* broke.*,
 work vehicle incident,roller,,tipped over_ was reversing_ reversed_ slip.*,,
 aggressive behaviour,altercation,employee.*_ worker.*,with.*employee.*_ with.*worker.*,,
-aggressive behaviour,fight,employee.*_ worker.*,,,
+aggressive behaviour,fight,employee.*_ worker.*,,,fight of stairs
 aggressive behaviour,argument,employee.*_ worker.*,,,
 weather related issue,rain,overnight_ broke.*due.*to_flooded_ stuck.*heavy,flooded,heavy.*rain.* leak.*,
 weather related issue,snow,overnight_ broke.*due.*to_ weight of_ stuck.*heavy,,heavy snow.*,
@@ -355,7 +355,7 @@ security or general safety concern,fugitive*,,on.*run,,
 security or general safety concern,break,security.*disturb.*,,attempt.*break.*in,
 security or general safety concern,unescorted,entered ,,,
 security or general safety concern,escort*,without_ no,,,
-knife incident,knife,,,cut.*self_ {worker} .* knife .* {arm}_ knife .* {arm} .* {worker},
+knife incident,knife,,,cut.*self_ {worker} .* knife .* {arm}_ knife .* {arm} .* {worker}_ knife.*{hurt}.*{arm}_ {hurt}.*{worker},
 excavations,excavat*,deep,contact.*culvert,in.* excavation.* injur.*,
 disease or infection,malari*, diagnose.*with,,,
 disease or infection,screening,,,test.*positive.*screening,

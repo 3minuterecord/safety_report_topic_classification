@@ -12,10 +12,7 @@ import numpy as np
 # 4. Save sample of classified texts for scoring
 # +--------------------------------------------------------------------+
 
-def main():
-        # How many datasets
-        num_dsets = 3
-        
+def main():       
         # Load raw incident data
         req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
         req_cols2 = ['ID', 'EventTitle', 'Final Narrative']
@@ -55,6 +52,7 @@ def main():
 
         # Add identifier fields to the manually fabricated dataset
         manu_fabr['dataset'] = 'MANF'
+        manu_fabr['text'] = manu_fabr['text'].str.lower()
         manu_fabr['incident_id'] = [i+1 for i in range(len(manu_fabr))]
      
         # Load the synonym database
@@ -119,7 +117,7 @@ def main():
         date_time = now.strftime("%y%m%d%H%M%S")
         
         print('Writing data for testing...')
-        out_df.to_csv(f'test_samples/{date_time}_{sample_size}_sample_scores.csv', index=False )
+        out_df.to_csv(f'test_samples/{date_time}_{sample_size}_sample_scores.csv', index=False)
         print('done \n')
         
 if __name__ == "__main__":
