@@ -228,6 +228,17 @@ def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_
         
     return(final_match)
 
+# Create a simple text cleaning function
+# Function is series of cleaning steps 
+def clean_text (doc):
+    doc = doc.strip() # leading/trailing whitespace  
+    doc = doc.replace('/', ' ')  # slashes
+    doc = doc.replace('-', ' ')  # dashes
+    doc = re.sub(' +', ' ', doc) # more than one space
+    doc = doc.replace("'s", "")  # 's
+    doc = doc.lower() # to lower
+    return(doc)
+
 # Used for keyword in context approach (more robust context extraction)
 def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, window):
     """
@@ -244,10 +255,8 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
     :return: True/False - whether at least one matching part was found
     """
     
-    # Remove any slashes
-    doc = doc.replace('/', ' ')
-    doc = doc.replace(' / ', ' ')
-    doc = doc.lower()
+    # Apply some simple text cleaning
+    doc = clean_text(doc)
     
     # Break the text into sentences
     # Each sentence is checked separately
