@@ -46,7 +46,7 @@ def main():
                                         scores.append(score)
                 out_df['scores'] = scores[1:]
                 print('Writing scores...')
-                out_df.to_csv(f'scores/{sample_ref}_{classified_count}_scored_dataset_{goods_per}-{fairs_per}-{badas_per}.csv', index=False)
+                out_df.to_csv(f'scored_samples/{sample_ref}_{classified_count}_scored_dataset_{goods_per}-{fairs_per}-{badas_per}.csv', index=False)
                 print('done \n')
         except:
                 print('Error: Check if a valid file reference has been used...')      
