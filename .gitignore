@@ -136,3 +136,5 @@ out_df_temp.csv
 output
 
 .python_packages
+*.xlsx
+gp_us_p2.xlsx
