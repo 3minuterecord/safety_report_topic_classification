@@ -11,61 +11,61 @@ from datetime import datetime
 # +--------------------------------------------------------------------+
 
 def main():
-        # Load raw incident data
-        req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
-        req_cols2 = ['ID', 'EventTitle', 'Final Narrative']
-        incidents = pd.read_csv("data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
-        osha_incs = pd.read_csv("data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
-
-        # Load the 'kwic' rule definitions
-        # 'kwic' = Keyword in context
-        rul_csv = pd.read_csv('data/rule_book_kwic.csv')
-
-        # Some clean up for Wood dataset
-        # Concatenate some of the fields to make the 'text' field for searching
-        incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
-        incidents['text'] = (
-                incidents['ShortDescription'].astype(str).fillna('') + ' ' + 
-                incidents['FullDescription'].astype(str).fillna('') + ' ' + 
-                incidents['ImmediateAction'].astype(str).fillna('')
-        ).str.lower()
-        incidents['dataset'] = 'ORGP'
-
-        # We only need the incident ID and the text for now
-        incidents = incidents[['incident_id', 'dataset', 'text']]
-
-        # Some clean up for OSHA dataset
-        # Concatenate some of the fields to make the 'text' field for searching
-        osha_incs.rename(columns={'ID': 'incident_id'}, inplace=True)
-        osha_incs['text'] = (
-                osha_incs['EventTitle'].astype(str).fillna('') + ' ' + 
-                osha_incs['Final Narrative'].astype(str).fillna('')
-        ).str.lower()
-        osha_incs['dataset'] = 'OSHA'
-
-        # We only need the incident ID and the text for now
-        osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
-
-        # Combine OSHA and Wood datasets
-        incidents = pd.concat([incidents, osha_incs])
-        docs = incidents
-
-        # Load the synonym database
-        syns_data = pd.read_csv('synonyms.csv')
-        syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
-
-        # Get categories
-        rules_to_run = rul_csv.group.unique()
-        
         # Open a log file for results        
         # Current date and time for referencing filename
         now = datetime.now() 
         date_time = now.strftime("%y%m%d%H%M%S") 
         log_file = open(f'output/{date_time}_log.txt', 'w')
         
-        for rule_to_run in rules_to_run:
-        #rule_to_run = 'general injury'
-                print(f'Scanning for rule: "{rule_to_run}"')
+        # Load the 'kwic' rule definitions
+        # 'kwic' = Keyword in context
+        rul_csv = pd.read_csv('data/rule_book_kwic.csv')
+        
+        # Get categories
+        rules_to_run = rul_csv.group.unique()
+        
+        for n, rule_to_run in enumerate(rules_to_run):
+                #rule_to_run = 'general injury'
+                # Load raw incident data
+                req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
+                req_cols2 = ['ID', 'EventTitle', 'Final Narrative']
+                incidents = pd.read_csv("data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
+                osha_incs = pd.read_csv("data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
+
+                # Some clean up for Wood dataset
+                # Concatenate some of the fields to make the 'text' field for searching
+                incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
+                incidents['text'] = (
+                        incidents['ShortDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['FullDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['ImmediateAction'].astype(str).fillna('')
+                ).str.lower()
+                incidents['dataset'] = 'ORGP'
+
+                # We only need the incident ID and the text for now
+                incidents = incidents[['incident_id', 'dataset', 'text']]
+
+                # Some clean up for OSHA dataset
+                # Concatenate some of the fields to make the 'text' field for searching
+                osha_incs.rename(columns={'ID': 'incident_id'}, inplace=True)
+                osha_incs['text'] = (
+                        osha_incs['EventTitle'].astype(str).fillna('') + ' ' + 
+                        osha_incs['Final Narrative'].astype(str).fillna('')
+                ).str.lower()
+                osha_incs['dataset'] = 'OSHA'
+
+                # We only need the incident ID and the text for now
+                osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
+
+                # Combine OSHA and Wood datasets
+                incidents = pd.concat([incidents, osha_incs])
+                docs = incidents
+
+                # Load the synonym database
+                syns_data = pd.read_csv('synonyms.csv')
+                syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
+            
+                print(f'Scanning for rule {n} of {len(rules_to_run)}: "{rule_to_run}"')
                 categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_to_run, verb=False)
 
                 # Now tidy up the presentation of the output for printing
