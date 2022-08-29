@@ -2,6 +2,7 @@ import pandas as pd
 import rule_book_functs as rbfuncts
 from datetime import datetime
 import numpy as np
+from statistics import median
 
 # Description:
 # +--------------------------------------------------------------------+
@@ -16,13 +17,15 @@ def main():
         print('\n')
         sample_size = int(input('Sample size: '))
         num_experim = int(input('Number of tests: '))      
-        
+
+        # Open a log file for results        
         # Current date and time for referencing filename
         now = datetime.now() 
         date_time = now.strftime("%y%m%d%H%M%S") 
-        
-        # Open a log file for results
         log_file = open(f'coverage_checks/{date_time}_log.txt', 'w')  
+        
+        # Gather coverages in list so average and median is calculated
+        coverages = []
         for t in range(num_experim):  
                 # Load raw incident data
                 req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
@@ -105,6 +108,8 @@ def main():
                 print('Classified count: ', check_count)
                 print(f'Classified perct: {class_perct}%')
                 
+                coverages.append(class_perct)
+                
                 # Write output in latex format for copy + paste into report (for tabulated results)
                 write_str = f'{t+1} & {date_time} & {sample_size} & {class_perct}\\'
                 log_file.write("%s\n" % write_str)     
@@ -116,6 +121,9 @@ def main():
                 # Save the output file with classifications for verification/checking                                      
                 out_df.to_csv(f'coverage_checks/{date_time}_{sample_size}_{int(class_perct)}_sample_coverage.csv', index=False)                
         
+        # Add the average and median coverage to the log file
+        write_str = f'Average: {rbfuncts.average_lst(coverages)}, median: {median(coverages)}'
+        log_file.write("%s\n" % write_str) 
         log_file.close()        
         
 if __name__ == "__main__":

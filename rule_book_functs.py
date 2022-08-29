@@ -10,6 +10,8 @@ from tqdm import tqdm
 from datetime import datetime
 import sys
 
+def average_lst(lst):
+    return sum(lst) / len(lst)
 
 def isNaN(num):
     return num!= num
