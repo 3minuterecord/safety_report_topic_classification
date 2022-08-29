@@ -137,4 +137,5 @@ output
 
 .python_packages
 *.xlsx
-gp_us_p2.xlsx
+
+coverage_checks/
