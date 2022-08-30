@@ -58,14 +58,15 @@ def main():
                 osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
 
                 # Combine OSHA and Wood datasets
-                incidents = pd.concat([incidents, osha_incs])
-                docs = incidents
+                docs = pd.concat([incidents, osha_incs])
 
                 # Load the synonym database
                 syns_data = pd.read_csv('synonyms.csv')
                 syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
             
-                print(f'Scanning for rule {n} of {len(rules_to_run)}: "{rule_to_run}"')
+                print(f'Scanning for rule {n+1} of {len(rules_to_run)}: "{rule_to_run}"')
+                rul_csv = pd.read_csv('data/rule_book_kwic.csv')
+
                 categories = rbfuncts.kwic_rule_book_scan(rules=rul_csv, docs=docs["text"], syns_db=syns_data, run_rules=rule_to_run, verb=False)
 
                 # Now tidy up the presentation of the output for printing

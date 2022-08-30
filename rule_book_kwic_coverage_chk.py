@@ -122,8 +122,9 @@ def main():
                 out_df.to_csv(f'coverage_checks/{date_time}_{sample_size}_{int(class_perct)}_sample_coverage.csv', index=False)                
         
         # Add the average and median coverage to the log file
-        write_str = f'Average: {rbfuncts.average_lst(coverages)}, median: {median(coverages)}'
+        write_str = f'Min: {min(coverages)}, average: {rbfuncts.average_lst(coverages)}, median: {median(coverages)}, max: {max(coverages)}'
         log_file.write("%s\n" % write_str) 
+        log_file.write("%s\n" % coverages) 
         log_file.close()        
         
 if __name__ == "__main__":

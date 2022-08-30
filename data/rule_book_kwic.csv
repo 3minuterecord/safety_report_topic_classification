@@ -86,7 +86,7 @@ mechanical or equipment issue,brake,,not set.*equipment_ system malfunction_ bra
 fuel spill or leak,spill*,fuel_ diesel_ petrol_ gas,fuel_ diesel_ petrol_ gas_ hydraulic_ oil,,
 fuel spill or leak,fuel,release of,,fuel.*spill.*,
 hydraulic fluid or oil leak,leak*,hydraulic_ oil,hydraulic_ oil,{fuel}.*leak.*from.*{vehicle},
-hydraulic fluid or oil leak,fluid*,hydraulic_ oil,,,
+hydraulic fluid or oil leak,fluid*,hydraulic_ oil,,fuel.*spill.*,
 hydraulic fluid or oil leak,hydraulic,minor spill_ major spill,leak.*_spill_ drip.*_ was released from_ hose.*failed,,
 hydraulic fluid or oil leak,oil,minor spill_ major spill,leak.*_ spill_ drip.*_ was released from,,
 fire,fire*,onset_ started_ broke_out_ caught_ incident,started_ damage_ occur.*due to_ incident,extinguisher.*used,false alarm_ water hose checks_ line of fire
