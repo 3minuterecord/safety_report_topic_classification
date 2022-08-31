@@ -2,6 +2,7 @@ import pandas as pd
 import rule_book_functs as rbfuncts
 from tqdm.notebook import tqdm
 from datetime import datetime
+import sys
 
 # Description:
 # +--------------------------------------------------------------------+
@@ -22,7 +23,15 @@ def main():
         rul_csv = pd.read_csv('data/rule_book_kwic.csv')
         
         # Get categories
-        rules_to_run = rul_csv.group.unique()
+        rules_to_run = list(rul_csv.group.unique())
+
+        # Add option to enter a rule to start from, e.g., 'theft'
+        # More than one arg means that arguments are being entered
+        # First argument will always be the script name itself
+        if len(sys.argv) > 1:
+                assert len(sys.argv) == 2, 'Only one rule can be given to the script...'              
+                index = rules_to_run.index(str(sys.argv[1]))
+                rules_to_run = rules_to_run[index:]
         
         for n, rule_to_run in enumerate(rules_to_run):
                 #rule_to_run = 'general injury'
