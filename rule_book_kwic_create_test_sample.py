@@ -23,7 +23,7 @@ def main():
         
         # Load the 'kwic' rule definitions
         # 'kwic' = Keyword in context
-        rul_csv = pd.read_csv('data/rule_book_kwic.csv')
+        rul_csv = pd.read_csv('rule_book/rule_book_kwic.csv')
 
         # Some clean up for Wood dataset
         # Concatenate some of the fields to make the 'text' field for searching
@@ -56,7 +56,7 @@ def main():
         manu_fabr['incident_id'] = [i+1 for i in range(len(manu_fabr))]
      
         # Load the synonym database
-        syns_data = pd.read_csv('synonyms.csv')
+        syns_data = pd.read_csv('rule_book/synonyms.csv')
         syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
 
         # Create the sample without replacement
