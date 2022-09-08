@@ -125,6 +125,7 @@ def translate_to_regex(rule_part, syns_db):
         for rule in split_rule:
             # Check for presence of synonym, e.g., {eye}
             syns = re.findall("{[a-zA-Z'-]*}", rule)
+            #print(syns)
             # How many do we find?
             syn_count = len(syns)
             # No process based on how many we find (max number is 3, min is 0)
