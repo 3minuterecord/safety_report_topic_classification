@@ -1,0 +1,17 @@
+group,rules_all
+competency,
+fall from or working at height issue,
+dropped object or material,
+mechanical or equipment issue,
+fuel spill or leak,
+hydraulic fluid or oil leak,there was a {leak}_ a {leak}_ a {vehicle}_ {leak} {observed}_ {workerconsol} {observed}_ {mechcomponent} failure_ mechanical failure_ mechanical problem
+hazardous materials or work,
+environmental leak or issue,
+line strike,
+ppe non-compliance,
+site compliance or practice issue,
+confined space non-conformance or issue,
+security or general safety concern,
+excavations,
+line of fire,
+near miss,

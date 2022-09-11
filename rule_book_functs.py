@@ -152,6 +152,41 @@ def translate_to_regex(rule_part, syns_db):
         return r'(\b' + r'\b)|(\b'.join([s for s in rule_part.split('_ ') if s]) + r'\b)'
     else:
         return '' 
+    
+def expand_prompts(rule_part, syns_db):
+    """
+    converts ...
+    performs preprocessing to mutate synonyms & expand rule set for all permutations
+    """
+    if isinstance(rule_part, str): # If rule part is a string...
+        
+        # 1st, we need to preprocess and mutate synonyms if they are found in rules
+        # 1st step is to split the rule set into individual rules
+        split_rule = rule_part.split('_ ')
+
+        # create an empty list to hold the mutates rule set
+        out_rule = []
+
+        for rule in split_rule:
+            # Check for presence of synonym, e.g., {eye}
+            syns = re.findall("{[a-zA-Z'-]*}", rule)
+            #print(syns)
+            # How many do we find?
+            syn_count = len(syns)
+            # No process based on how many we find (max number is 3, min is 0)
+            if syn_count == 1:
+                syn_rules = mutate_syn(syns, syns_db, rule, 1)
+                out_rule.append(syn_rules)
+            elif syn_count == 2:                
+                syn_rules = mutate_syn(syns, syns_db, rule, 2)
+                out_rule.append(syn_rules)
+            else:       
+                # Do nothin, no mutation required as no synonym has been specified
+                out_rule.append(rule)
+                
+        return out_rule
+    else:
+        return '' 
        
 def check_presence(pattern, string):
     if pattern:
