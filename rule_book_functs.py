@@ -180,6 +180,9 @@ def expand_prompts(rule_part, syns_db):
             elif syn_count == 2:                
                 syn_rules = mutate_syn(syns, syns_db, rule, 2)
                 out_rule.append(syn_rules)
+            elif syn_count == 3:                
+                syn_rules = mutate_syn(syns, syns_db, rule, 3)
+                out_rule.append(syn_rules)    
             else:       
                 # Do nothin, no mutation required as no synonym has been specified
                 out_rule.append(rule)
