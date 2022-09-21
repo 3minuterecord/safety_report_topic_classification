@@ -9,6 +9,9 @@ import sys
 # 1. Load raw incident data, concatenate & remove unused fields
 # 2. Load rule book definitions
 # 3. Run rule book function based on 'kwic' & synonyms to classify text
+# 4. Code runs rule (group) by rule (group)
+# 5. To start from a particular rule group, provide rule group as arg
+#     - e.g., python rule_book_run_rule_by_rule.py slips and trips
 # +--------------------------------------------------------------------+
 
 def main():
