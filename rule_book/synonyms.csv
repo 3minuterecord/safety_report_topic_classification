@@ -35,7 +35,7 @@ mechcomponent_syns,"connector, diesel, drill, generator, hydraulic, hydraulic ho
 mechfailcomponent_syns,"bolt, connector, connection, compressor, drill, generator, hydraulic unit, hydraulic hose, hose, plant, turbine, valve"
 nonwork_syns,"non-work related, non work related, not related to work "
 object_syns,"bollard, post, scaffold, wall"
-observed_syns,"detected, discovered, found, noticed, observed, seen, spotted, was, witnessed"
+observed_syns,"detected, discovered, found, noticed, observed, seen, spotted, witnessed"
 pain_syns,"banged, blew, blown, debris, discomfort, dirt, dust, felt, foreign, fb, fp, grit, hit, hurt, irritation, laceration, pain, particle, soreness, something in, swelling, swollen, struck, sprayed, swell, swelling, swollen"
 permit,"good practice, normal practice, site practice, permit, procedure, process"
 ppe_syns,"gloves, glasses, goggles, ppe, protective, personal protective equipment"

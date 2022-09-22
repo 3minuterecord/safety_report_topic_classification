@@ -4,12 +4,18 @@ from tqdm.notebook import tqdm
 
 # Description:
 # +--------------------------------------------------------------------+
-# 1. Load a csv of fabricated incident descriptions by file reference
-# 2. Randomly sample 100 descriptions from the dataset
-# 3. Loop through and manually score each fabricated incident
-#     - Does it make sense? 
-#     - Is it close to a human-written report? 
-# 4. Save scores to output file
+# This script is used to manually evaluate each false positive (FP) 
+# classification made by the a trained topic classification model.
+# As the TC model is trained on rule book data, not all classifications
+# will be accurate and some true positives will have been missed.
+
+# Main Steps:
+# -----------
+# 1. Load a csv of false postive classifications
+# 2. Loop through and manually assess if false positive or true positive
+#     - Did the rule book miss this narrative and TC model is correct? 
+# 4. Save the corrected classification to output file
+#     - Use the corrected file to adjust the TC model precision measure
 # +--------------------------------------------------------------------+
 
 def main():
