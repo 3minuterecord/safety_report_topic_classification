@@ -6,7 +6,7 @@ from tqdm.notebook import tqdm
 # +--------------------------------------------------------------------+
 # This script is used to manually evaluate each false positive (FP) 
 # classification made by the a trained topic classification model.
-# As the TC model is trained on rule book data, not all classifications
+# As the TC model is trained on rule book hits, not all classifications
 # will be accurate and some true positives will have been missed.
 
 # Main Steps:
