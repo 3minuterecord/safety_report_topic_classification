@@ -34,7 +34,7 @@ def main():
                         print(doc)
                         print('\n')
                         trues, falses = scores.count(1), scores.count(2)
-                        tots = trues+ falses
+                        tots = trues + falses
                         if tots == 0:
                                 score_tally = f'T: {trues}\tF: {falses}'
                         else:
@@ -52,7 +52,7 @@ def main():
                                         scores.append(score)
                 out_df['scores'] = scores[1:]
                 print('Writing scores...')
-                out_df.to_csv(f'scored_samples/{sample_ref}_scored_predictions_{trues}-{falses}.csv', index=False)
+                out_df.to_csv(f'scored_samples/{sample_ref}_scored_predictions_{trues_per}-{falses_per}_{trues}-{falses}.csv', index=False)
                 print('done \n')
         except:
                 print('Error: Check if a valid file reference has been used...')      
