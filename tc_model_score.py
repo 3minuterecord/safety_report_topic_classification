@@ -25,7 +25,6 @@ def main():
                 out_df = pd.read_csv(f"performance/{sample_ref}.csv", dtype=str)
                 out_df.reset_index(inplace=True)    
                 scores = [0]
-                print(out_df)
                 for r, doc in enumerate(out_df["text"]):
                         print('\n')
                         cat_title = f'{r+1} of {len(out_df)}'
