@@ -1,4 +1,4 @@
-# safety_report_tc
+# Safety Report Topic Classification
 Safety report topic classification with transformer-based data augmentation
 
 **TODO** - Check if data normalisation is required for fabricated data.
