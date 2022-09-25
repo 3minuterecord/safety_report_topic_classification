@@ -141,6 +141,12 @@ output
 coverage_checks/
 ~$gp_us_p2.xlsx
 
-embeddings
+03_embeddings
 
-data/fabricated
+01_data/fabricated
+01_data/prepared
+01_data/source
+
+07_language_models/training_data
+
+08_output
