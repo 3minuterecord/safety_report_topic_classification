@@ -21,7 +21,7 @@ gen1_syns,the
 hazmaterial_syns,"asbestos, benzene, chlorine, chrysotile, monoxide"
 height_syns,"ladder, object weighing, platform, roof, rooftop, scaffold, step-ladder"
 heightequipment_syns,"gantry, height, high level, highlevel, ladder, lift, platform, roof, scaffold, step-ladder, upper level"
-hydraulicoil_syns,"hyd, hydraulic, oil"
+hydraulicoil_syns,"hpu, hyd, hydraulic, oil"
 illness_syns,illness
 insectanimal_syns,"animal, antelope, bee, bird, bug, camel, cat, cow, deer, dog, fly, goat, hedgehog, hog, horse, insect, kangaroo, mosquito, pigeon, rat, rodent, scorpion, squirell, spider, snake_ wasp, yellow jacket_ yellowjacket"
 involve_syns,"involved, participated in"
