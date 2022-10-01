@@ -19,7 +19,8 @@ from tqdm.notebook import tqdm
 
 def main():
         # Load test data
-        sample_ref = 'model_hydraulic fluid or oil leak_fps'
+        # Example filename: model_hydraulic fluid or oil leak_fps
+        sample_ref = input('Enter file name without extension: ')
         try:
                 out_df = pd.read_csv(f"10_performance/{sample_ref}.csv", dtype=str)
                 out_df.reset_index(inplace=True)    
