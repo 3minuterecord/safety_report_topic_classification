@@ -14,12 +14,12 @@ def main():
         # Load raw incident data
         req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
         req_cols2 = ['ID', 'EventTitle', 'Final Narrative']
-        incidents = pd.read_csv("data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
-        osha_incs = pd.read_csv("data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
+        incidents = pd.read_csv("01_data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
+        osha_incs = pd.read_csv("01_data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
 
         # Load the 'kwic' rule definitions
         # 'kwic' = Keyword in context
-        rul_csv = pd.read_csv('data/rule_book_kwic.csv')
+        rul_csv = pd.read_csv('04_rule_book/rule_book_kwic.csv')
 
         # Some clean up for Wood dataset
         # Concatenate some of the fields to make the 'text' field for searching
@@ -66,7 +66,7 @@ def main():
                 docs = incidents
 
         # Load the synonym database
-        syns_data = pd.read_csv('synonyms.csv')
+        syns_data = pd.read_csv('04_rule_book/asynonyms.csv')
         syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
 
         # Get categories
@@ -99,7 +99,7 @@ def main():
         classified_percent = round(100 - round(100*(unclassified_count / len(out_df)), 1), 1)
 
         if run_choice == 'a':
-                out_df.to_csv(f'output/{rule_extent}_{classified_count}_out_df_temp.csv')
+                out_df.to_csv(f'08_output/{rule_extent}_{classified_count}_out_df_temp.csv')
                 print('\n')
         else:
                 # Print to console in a review-friendly manner
