@@ -254,7 +254,8 @@ def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_
             post_check = check_apply(sen, check_post) or post_check
             if post_check: break 
             
-    for sen in sens_all:             
+    for sen in sens_all:   
+        #print(sen)          
         if len(check_all) != 0:
             all_check = check_apply(sen, check_all) or all_check
             #print(check_all)
@@ -264,9 +265,9 @@ def check_apply_all(sens_pre, sens_post, sens_all, check_pre, check_post, check_
             void_check = check_apply(sen, check_void)   
             #print('check voids: ', void_check)
             if void_check: break 
-
+    #print('Void end check: ', void_check)
     final_match = (pre_check or post_check or all_check) and not void_check
-        
+    #print('Final match: ', final_match)    
     return(final_match)
 
 # Create a simple text cleaning function
@@ -363,7 +364,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
             check_all=check_all, 
             check_void=check_void
             )
-        
+    #print('Final match 2nd: ', final_match)    
     return final_match
 
 # Function to categorize text using simple find pattern approach
@@ -433,7 +434,7 @@ def categorize_text(doc, rules, focus_group, window=5, verbose=False):
             )
         ) for j in range(num_rules)
     ]
-
+    #print(finds)
     # Filter out the True (finds) = 1 (0 would be False)
     output = list(filter(lambda x: x[1], finds))
     # Remove the True tags and just present a list of the unique categories

@@ -8,6 +8,7 @@ from tqdm.notebook import tqdm
 # 1. Load raw incident data, concatenate & remove unused fields
 # 2. Load rule book definitions
 # 3. Run rule book function based on 'kwic' & synonyms to classify text
+#       - Option to run all rules or single rule group
 # +--------------------------------------------------------------------+
 
 def main():
@@ -66,7 +67,7 @@ def main():
                 docs = incidents
 
         # Load the synonym database
-        syns_data = pd.read_csv('04_rule_book/asynonyms.csv')
+        syns_data = pd.read_csv('04_rule_book/synonyms.csv')
         syns_data['syn'] = syns_data['syn'].apply(rbfuncts.replace_syns)
 
         # Get categories
