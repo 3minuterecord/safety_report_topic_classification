@@ -1,7 +1,0 @@
-group,keyword,rules_pre,rules_post,rules_all,voids,,
-eye injury or irritation,eye*,,,fp.*eye.*{worker}_ spanner in {eye}_ {pain}.*{eye}.*{worker},,,
-site compliance or practice issue,permit,,,during.* audit_ failed.* section_ modif.*without.*permit_ wothout permit_ with out permit_ without.*work,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,                                      

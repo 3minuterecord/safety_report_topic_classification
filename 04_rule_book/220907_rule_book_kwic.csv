@@ -1,0 +1,387 @@
+group,keyword,rules_pre,rules_post,rules_all,voids
+slips & trips,slip*,walking (.*) snow_ walking (.*) ice_ walking (.*) wet_ causing.*cleaner to_ walking when_ climbing.* when_ lady_ man_ wroker_ employee_ ip_ foot_ leg,fall_ fell_ went over_ hurt.*_ and twist.*_ to lower level,{slip}.*{fall}_ fall_ fell_ trip_ tripped_ individual slipped_ ip slipped_ slipped on_ hurting foot,fell (.*) bike_ no slip_ no fall_ it slipped_ it fell board slipped_ tool_slipped plank slipped_ pipe slipped_ chisel slipped_ knife slipped_ hand slipped_ falling object_ dropped object_ hammer.*slip.*_ .*hammer.*slip.*_ rung.*step.*_ its_ while sitting_ {vehicle}_ pry bar_flange_ cup
+slips & trips,trip*,walking (.*) snow_ walking (.*) ice_ walking (.*) wet_ causing.*cleaner to_ walking when_ climbing.* when_ lady_ man_ wroker_ employee_ ip,fall_ fell_ went over_ frayed_ loose_ hazard__ and twist.*_ to lower level,fall_ fell_ trip_ tripped_ individual slipped_ ip slipped_ tripped on_ hurting foot,fell (.*) bike_ no slip_ no fall_ it slipped_ it fell board slipped_ tool_slipped plank slipped_ pipe slipped_ chisel slipped_ knife slipped_ hand slipped_ generator_ power_ electricity_ falling object_ dropped object_ rung.*step.*_ while sitting
+slips & trips,stumble*,causing.*cleaner to_ causing.*ip to_ causing.*employee to_causing.*worker to_ walking.*when_ climbing.* when_ lady_ man_ wroker_ employee_ ip,floor_ and twist.*,hurting foot,rung.*step.*_ while sitting
+slips & trips,uneven,causing.*cleaner to_ causing.*ip to_ causing.*employee to_causing.*worker to_ walking.*when_ climbing.* when,_ and twist.*,employee.* uneven.* surface_ ip.* uneven.* surface_ worker.* uneven.* surface_ hurting foot,rung.*step.*_ while sitting
+slips & trips,fell,causing.*cleaner to_ causing.*ip to_ causing.*employee to_causing.*worker to_ walking.*when_ climbing.* when_ lady_ man_ wroker_ employee_ ip,_ and twist.*_ on.*floor_ on.*ground,employee fell back.*_ ip fell back.*_ worked fell back.*_ employee fell over_ ip fell over_ worked fell over*_ {worker}.*fell.*ground_ employee fell to the ground,straps_ drop.*_ fell (.*) bike_ no slip_ no fall_ it slipped_ it fell board slipped_ tool_slipped plank slipped_ pipe slipped_ chisel slipped_ knife slipped_ hand slipped_ falling object_ dropped object_ rung.*step.*_ while sitting_ pry bar_ ladder_ step ladder_ fall to lower level_ came apart and fell_ hammer_ fell .* feet_ battery_ trench_ cup
+slips & trips,footing,loss of_ lost his_ lost her_ lost their,,,
+slips & trips,-,,,{worker} .* {slip},
+slips & trips,fall,,on same level_ at same level,,fall to lower level
+eye injury or irritation,eye*,something.*in_ swell.*_ swollen_ dust.*in_ particle.*in_ discomfort_ sprayed into,,{worker}.*{pain}.*{eye}_ {pain}.*{eye}.*{worker}_ {gen1}.*{pain}.*{eye}_ irritation_ foreign body_ foreign object_ irritation.*eye_ pain in.*eye_ fell.*eye_ fall.*eye_ debris.*eye_ pain to_ {pain}.*{eye}.*{worker},
+eye injury or irritation,weld*,,,exposed.*weld.*arc,
+eye injury or irritation,flash,arc.*,,,
+vehicle Incident involving animal,vehicle*,animal.*front.*of,,{insectanimal},
+vehicle Incident involving animal,swerv*,,{insectanimal},,
+vehicle Incident involving animal,brake*,,{insectanimal},,
+vehicle Incident involving animal,driving,animal.*front.*of,,{insectanimal},
+vehicle Incident involving animal,car,animal.*front.*of,,{insectanimal},
+vehicle Incident involving animal,struck*,,{insectanimal},,
+vehicle Incident involving animal,deer,,strike,,
+theft,theft*,car_ trailer_ bucket_ van_ equipment_ tools_ dumper_ excavator_ ppe,of.*property_ of.*equipment_ of.*plant_ of.*personal,break in_ broke in_ stolen_ broken_ overnight_ was stolen,
+theft,stole*,broke.*into,of.*property_ of.*equipment_ of.*plant_ of.*personal,theft_ broke*_ overnight_ break in_ broke in_ was stolen_ stole.* from.*_ equip.*stole.*from,
+theft,padlock,,of property_ of equipment_ of plant_ of personal_ found.* cut,_ was stolen_ equip.*stole.*from,
+theft,missing,,of property_ of equipment_ of plant_ of personal,money missing_ taken from_ was stolen_ equip.*stole.*from,
+theft,rob*,,,employee.*rob.*while_ worker.*rob.*while_ vehicle.*rob.*while_ equip.*stole.*from,
+theft,access*,,,access.*unlocked.*suspic.*,
+theft,entry,forced_ focered,,forced open,
+theft,taken,,,taken.*from.*vehicle.*_ taken.*from.*building.*,
+theft,-,,,{worker}.*{theft}.*{theftobject},
+theft,-,,,{theft_object}.*{theft},
+competency,certifi*,{worker} was not_ {worker} had no.*_ {worker} did not have,,{worker} did not have.*certificat.*,
+competency,train*,{worker}.*not received.*correct_ {worker} was not.*certified or trained_ {worker}.*not attend.*training,,lack (.*) training_ lack (.*) competency_ {worker} .* had no training_ {worker} .* had not .* training_ until.*undergoes.*training,
+competency,experienced,{worker} not,,,
+competency,inexperienced,{worker}_ young and,{worker},,
+competency,refresh*,,,{worker}.*refresh.*train.*_ {worker}.*refresh.*technique,
+competency,-,,,{lacking}.*{competency},
+competency,-,,,{competency} .* {lacking},
+covid,covid*,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
+covid,pcr,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
+covid,rt-pcr,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
+covid,symptoms,,,covid_ test*_ positive_ negative_ pcr test_ pcr_ antigen_ diagnosed.* covid.*,
+covid,tested,,,ip.*test.*positive.*trace.*_ symptomatic.*tested positive,
+covid,positive,,asymptomatic,isolate.*tested positive,
+covid,-,,,{worker}.*{tested}.*{covid},
+back injury,back,{backpain}_ {hurt}_ hurt_ twisted_ soreness in_ sudden pinch_ strain.*_ irritation to_ discomfort to_ contusion to_ bruis.*to_ graz.*to,pain_ discomfort_ muscle spasm_ strain.*_ twinge,{worker}.*{backpain}.*{back}_ discomfort (.*) back_ landed (.*) back_ severe (.*) pain_ pain in (.*) area_ felt pain (.*) lower_ felt pain (.*) upper_ experienced pain (.*) lower_ experienced pain (.*) upper_ pain (.*) lower_ experienced pain (.*) upper_ reported.* back injury_ reported.* back condition_ injur.* back_ pain to_ aggravate.*back.*condition_ felt.*tweak.*in his.*back,vehicle_ truck_ car_ back side_ reversed back_ back of_ back off_ bring.*back_ rolled back
+back injury,vertebrae,hurt_ twisted_ soreness in_ sudden pinch_ strain.*_ irritation to_ discomfort to_ contusion to_ bruis.*to_ graz.*to_ {backpain}_ {hurt},pain_ discomfort_ muscle spasm_ strain.*_ twinge,fractur.*vertebrae,
+back injury,pelvis,{backpain}_ {hurt},,,
+fall from or working at height issue,height,,,{height}.*{equipment}.*{fallingobject}_ working (.*) fell,object_ weighing_ fall to lower level less than 6 feet
+fall from or working at height issue,fall*,,to lower level_ to .* ground below,{height}.*{equipment}.*{fallingobject}_ working (.*) fell_ without (.*) protection_ step ladder_ ladder_ fall.*miss.*colleague.*_ fall.*miss.*ip.*_ fall.*miss.*worker.*_ fall.*miss.*employee.*_ falling object_ curtailed .* fall arrest_ not using.*fall arrest,object_ weighing_ slip.*_ fall to lower level less than 6 feet
+fall from or working at height issue,basket,,made.*contact_ contacted_ bumped_ came.*contact,,fall to lower level less than 6 feet
+fall from or working at height issue,lanyard,shock absorb.*,to deploy_ deployed,,fall to lower level less than 6 feet
+fall from or working at height issue,fell,,from.*{height}_ to lower level_ to .* ground below,{height} when {worker} fell_ {worker}.*fell.*feet,fall to lower level less than 6 feet
+fall from or working at height issue,ladder,,,missed.*step.*fell_ lost.*balance.*fell,
+fall from or working at height issue,-,,,{worker}.*{heightequipment}.*{fallingobject},
+dropped object or material,drop*,object_ height_ caus.*grating_ scaffold_ plank,fell_ dropped_ fall_ under.*own.*weight_ for.*m,working (.*) fell_ working (.*) dropped_ came loose (.*) fell_ became loose (.*) fell_ drop.*from height_ hook.*drop.*into_ socket dropped from_ dropped object_ dropped item,{hurt}
+dropped object or material,height,fell from_ object_ weighing_ weight,,working (.*) dropped_ drop.*from height,{hurt}
+dropped object or material,slid*,,,sliding (.*) down_ slid (.*) down_ drop.*from height,{hurt}
+dropped object or material,fell,bolt_ tool.*_ ,falling_ from level.*of_ from above_ to ground_to.*level,section.*fell.*down_ part.*fell.*down_ piece.*fell.*down_ luminaire fell from_ bulb fell from_ fell.*to.*grade_ fell.*to.*ground_ fell.*to.*floor_ fell.*to.*slab_ fell.*into.*bund_ fell.*into.*hole_ drop.*from.*height_ few.*fell.*off_ some.*fell.*off_ fell.*to.*level.*below_ detach.*and.*fell_ beam fell from,slipped_ chin_ {slip}_ {worker}_ {hurt}
+dropped object or material,pole,,,board giving way_ board fell_ board drop.*_ dropped.* to.*level_ passed.*when.*dropped_ drop.*from height,{hurt}
+dropped object or material,scaffold,,fell during.*erection,board giving way_ board fell_ board drop.*_ dropped.* to.*level_ passed.*when.*dropped_ drop.*from height,{hurt}
+dropped object or material,board,,,board giving way_ board fell_ board drop.*_ fell.* ground_ fell.* deck_ passed.*when.*dropped_ drop.*from height,{hurt}
+dropped object or material,fall*,risk.*material,from.*ceiling_ from.*above_ from.*height_ to ground_to.*level,pipe.*to.*fall_ piece.*to.*fall_ board.*to.*fall_ drop.*from.*height_ shak.*fall.*down,slipped_ {worker}_ {hurt}
+dropped object or material,object,{collision} by falling,,board giving way_ board fell_ board drop.*_ fell.* ground_ fell.* deck_ passed.*when.*dropped_ drop.*from height_ would.*fall.*from_ falling object_ {collision} by object falling from,
+dropped object or material,landed,,in.*area,,{hurt}
+dropped object or material,collapsed,in the air when_ overhead when_ above when,spilling .* onto .* ground,,{hurt}
+mechanical or equipment issue,torque,,,insufficient (.*) value_ wrong (.*) setting_ wrench_ spanner_ tighten (.*) bolt,
+mechanical or equipment issue,broke,,support.*on,handle broke_ broke piece_ wheel.*broke off_ hose broke.*operation,
+mechanical or equipment issue,equipment,,,equipment failure_ equipment Damage.*,
+mechanical or equipment issue,grounding,,,no grounding_ no earth_ no earthing_ no bonding clip_,
+mechanical or equipment issue,smashed,,,glass (.*) door smashed,
+mechanical or equipment issue,damage*,found,cable_ hose,caused damage (.*) handrails_ caused damage (.*) handrail,
+mechanical or equipment issue,fail*,,,failed emergency lighting_ failed emergency_ emergency (.*) fail_ emergency (.*) failure_ of.*winch,
+mechanical or equipment issue,checks,while performing,fault.*,,
+mechanical or equipment issue,power*,loss of.*main,was lost_ outage,battery.* failure.*_ battery.* broke.*_ part.* broke.*_ loss.*of power_ loss.*of electric.*_ power cut,
+mechanical or equipment issue,socket,,split in half_ split,,
+mechanical or equipment issue,hose,,,hose.* damaged_ fail.*coupling,
+mechanical or equipment issue,ruptur*,,,disc.*ruptur.*dur.*,
+mechanical or equipment issue,head,,,head.*detach.*,
+mechanical or equipment issue,wrong,,gasket fitted,,
+mechanical or equipment issue,inspect.*,,,inspect.*found.*damage.*,
+mechanical or equipment issue,hydraulic,,,was experiencing.*issues_ experienced.*issues,
+mechanical or equipment issue,separate*,,,joint.*separate.*during,
+mechanical or equipment issue,handrail,,found.*loose,,
+mechanical or equipment issue,hole,,,rubbed.*hole.*in,
+mechanical or equipment issue,bent,found,,,
+mechanical or equipment issue,brake,,not set.*equipment_ system malfunction_ brake.*broke.*,,
+fuel spill or leak,spill*,fuel_ diesel_ petrol_ gas,fuel_ diesel_ petrol_ gas_ hydraulic_ oil,,
+fuel spill or leak,fuel,release of,,fuel.*spill.*,
+hydraulic fluid or oil leak,leak*,hydraulic_ oil,hydraulic_ oil,{fuel}.*leak.*from.*{vehicle},
+hydraulic fluid or oil leak,fluid*,hydraulic_ oil,,fuel.*spill.*,
+hydraulic fluid or oil leak,hydraulic,minor spill_ major spill,leak.*_spill_ drip.*_ was released from_ hose.*failed,,
+hydraulic fluid or oil leak,oil,minor spill_ major spill,leak.*_ spill_ drip.*_ was released from,,
+fire,fire*,onset_ started_ broke_out_ caught_ incident,started_ damage_ occur.*due to_ incident,extinguisher.*used,false alarm_ water hose checks_ line of fire
+fire,smok*,overheat.*and,coming from_ from.*engine,,
+alarms,alarm*,,,fire.*alarm.*activated_ fire.*alarm.*went off,
+alarms,chirp*,,"alar,.*_ monitor.*",,
+burns,burn*,hot_ heat_ fire_ redness_ chemical_,hot_ heat_ fire_ to hand_ to leg_ to foot_ to arm_ to finger_ to thumb_ to palm_ to neck_ to toe,minor.* burn_ major.* burn_ sensation after_ stinging.* after_ rope burn.*hand.*,back.*computer
+burns,redness,,,sensation after_ stinging.* after,back.*computer
+burns,scald,hot_ heat_ fire_ redness,wound_ burn_ redness,scald.* hand_ scald.* leg_ scald.* arm_ scald.* finger,back.*computer
+speeding,limit*,exceeding (.*) speed_ above (.*) speed,,speed (.*) vehicle,clearance_ measurement_ instrument_ equipment
+speeding,speed*,,,speeding.*vehicle,no speeding_ not speeding
+bites (animals or insects),bite*,insect_ animal_ fly_ dog_ cat_ animal_ rodent_ yellowjacket,,bitten.*ants,
+bites (animals or insects),bitte*,insect_ animal_ fly_ dog_ cat_ animal_ rodent_ yellowjacket,,bitten.*ants,
+bites (animals or insects),sting,,,bee sting_ wasp sting,
+bites (animals or insects),stung,,by.*insect_ by.*wasp_ by.*bee_ by.*spider,stung.*\\bbee_ stung.*\\bwasp,
+bites (animals or insects),-,,,{worker}.*{suffered}.*{insectanimal},
+vehicle incident general,-,,,{vehicle}.*{vehiclemove}_ {worker} .* pinned .* between .* {vehicle}_ {vehicle}.*warning light.*,
+vehicle incident general,vehicle*,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked_ {worker}.*{collision},minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ contact_ was damaged_ struck_ collided_ collision_ reversed into_ backed into_ rolled back,rear-ended_ rear ended_ vehicle hit (.*) vehicle_ car hit (.*) car_ hit (.*) vehicle_ unknown vehicle (.*) drove_ unknown vehicle (.*) driven_ vehicle (.*) vehicle_ car (.*) car_ sunk into_ sank into_ sunk into_ sank into_ over.* pot.*hole_ came in.* contact with_ vehicle.* contact with_ drove away.*while.*connected_ collided with.*_ pinned .* {worker} between .* vehicle.*,
+vehicle incident general,auto*,minor damage_ striking a parked_ damage to_ causing.*dent,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ contact_ reversed into_ backed into_ rolled back,rear-ended_ rear ended_ vehicle hit (.*) vehicle_ car hit (.*) car_ hit (.*) vehicle_ unknown vehicle (.*) drove_ unknown vehicle (.*) driven_ vehicle (.*) vehicle_ car (.*) car_ sunk into_ sank into_ over.* pot.*hole_ damaged.* auto_ came in.* contact with,
+vehicle incident general,car*,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ drove_ drive.*_ contact_ was damaged_ was struck_ collided_ collision_ reversed into_ backed into_ rolled back,rear-ended_ rear ended_ vehicle hit (.*) vehicle_ car hit (.*) car_ hit (.*) vehicle_ unknown vehicle (.*) drove_ unknown vehicle (.*) driven_ vehicle (.*) vehicle_ car (.*) car_ sunk into_ sank into_ over.* pot.*hole_ over.* pot.*hole_ damaged.* car_ came in.* contact with_ car.* contact with_ drove away.*while.*connected_ collided with,
+vehicle incident general,truck,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ contact_ reversed into_ backed into_ rolled back,rear-ended_ rear ended_ vehicle hit (.*) vehicle_ car hit (.*) car_ hit (.*) vehicle_ unknown vehicle (.*) drove_ unknown vehicle (.*) driven_ vehicle (.*) vehicle_ car (.*) car_ sunk into_ sank into_ over.* pot.*hole_ damaged.* truck_ came in.* contact with_ truck.* contact with_ drove away.*while.*connected,
+vehicle incident general,*van,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ contact_ was damaged_ reversed into_ backed into_ rolled back,rear-ended_ rear ended_ van hit (.*) van_ van hit (.*) van_ hit (.*) van_ unknown van (.*) drove_ unknown van (.*) driven_ van (.*) van_ van (.*) van_ sunk into_ sank into_ over.* pot.*hole_ damaged.* van_ came in.* contact with_ van.* contact with_ drove away.*while.*connected,
+vehicle incident general,window,minor damage_ striking a parked_ damage to_ cracked,minor damage_ was dented_ was broken,struck (.*) window_ broke (.*) window_ broke (.*) windscreen_ broke.* back_ over.* pot.*hole_ damaged.* window_ came in.* contact with_ rock.*went through.*car window_ rock.*went through.*vehicle window,
+vehicle incident general,winds*,minor damage_ striking a parked_ damage to_ cracked,minor damage_ was dented_ was broken,struck (.*) window_ broke (.*) window_ broke (.*) windscreen_ broke.* back_ over.* pot.*hole_ damaged.* window_ came in.* contact with,wind_ gust
+vehicle incident general,driv*,minor damage_ striking a parked_ damage to_ causing.*dent,non-trafficable_ minor damage_ trailer broke.*_ sharp.* turn.*_ was dented_ was broken_ reversed.*barrier_ while.*phone_ while.* mobile_ was.*blind.*sun.*_ accident,driven over (.*) damage_ backed into (.*) damage_ damaged.* auto_ came in.* contact with,
+vehicle incident general,traffic,minor damage_ striking a parked_ damage to_ causing.*dent,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident,road traffic incident_ road (.*) incident_ came in.* contact with,
+vehicle incident general,tyre*,minor damage_ striking a parked_ damage to,flat_ puncture_ contact,flat tyre_ flat tire_ flat tyres_ flat tires_ damaged tire*_ came in.* contact with,
+vehicle incident general,tire*,minor damage_ striking a parked_ damage to,flat_ puncture_ contact,flat tyre_ flat tire_ flat tyres_ flat tires_ damaged tyre*_ came in.* contact with,
+vehicle incident general,dent,minor damage_ striking a parked_ damage to,minor damage_ was dented_ was broken_ while.*park.*_ appear.*on.*car_ appear.*on.*truck_ appear.*on.*van_ appear.*on.*vehicle,found.* vehicle_ found.* truck_ found.* van_ found.* car_ _ came in.* contact with,
+vehicle incident general,damage,minor damage_ striking a parked_ damage to,minor damage_ was dented_ was broken_ while.*park.*_ appear.*on.*truck_ appear.*on.*van_ appear.*on.*vehicle,found.* vehicle_ found.* truck_ found.* van_ found.* car_ _ came in.* contact with,
+vehicle incident general,scratch*,minor damage_ striking a parked_ damage to,minor damage_ was dented_ was broken_ while.*park.*_ appear.*on.*truck_ appear.*on.*van_ appear.*on.*vehicle,found.* vehicle_ found.* truck_ found.* van_ found.* car_ paint.* to the_ came in.* contact with,
+vehicle incident general,bus,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident_ contact_ in.*collision_ reversed into_ backed into_ rolled back,road traffic incident_ road (.*) incident_ came in.* contact with,
+vehicle incident general,taillight,damag.*_ cracked_ broke.*,damag.*_ cracked_ broke.*,striking.*taillight lens,
+vehicle incident general,tail light,damag.*_ cracked_ broke.*,damag.*_ cracked_ broke.*,striking.*taillight lens,
+vehicle incident general,lane*,,,attempted to change,
+vehicle incident general,mobile,,whil.*driv_ whil.*enter.*_ when driv.*_ when enter.*,,
+vehicle incident general,collis*,,minor damage_ was dented_ was broken_ while.*park.*,near.*miss.*collis.*_ near.*miss.*crash.*,
+vehicle incident general,crash*,,minor damage_ was dented_ was broken_ while.*park.*,near.*miss.*collis.*_ near.*miss.*crash.*,
+vehicle incident general,blind.*,,sunlight.*road,,
+vehicle incident general,trailer,minor damage_ striking a parked_ damage to,accident_ contact_ was damaged_ rolled back,,
+vehicle incident general,fender,minor damage_ striking a parked_ damage to_ causing.*dent_ touch.*parked,minor damage_ was dented_ was broken_ while.*phone_ while.* mobile_ accident,road traffic incident_ road (.*) incident_ came in.* contact with,
+vehicle incident general,sleep,vehicle,vehicle,,
+hand or arm injury,finger*,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ splinter in_ hit_ bang.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ hit_bang.*_ snag.*_ abrasion_ infected_ {hurt},finger (.*) injury_ finger (.*) damage_ finger (.*) break_ finger (.*) fracture_ cut (.*) finger_ catching (.*) finger in_ causing.* avulsion_ was jammed_ struck by_ injur.* finger.*_ felt.*pain_ {hurt}.*finger,slip.*_ finger tight_ rake arm
+hand or arm injury,elbow,{hurt},{hurt},,
+hand or arm injury,knuckle,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},thumb (.*) injury_ thumb (.*) damage_ thumb (.*) break_ thumb (.*) fracture_ catching (.*) thumb in_ causing.* avulsion_ struck by_ injur.* thumb_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,thumb*,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edgev_ got caught_ cut_ infected_ {hurt},thumb (.*) injury_ thumb (.*) damage_ thumb (.*) break_ thumb (.*) fracture_ catching (.*) thumb in_ causing.* avulsion_ struck by_ injur.* thumb_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,wrist*,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},wrist (.*) injury_ wrist (.*) damage_ wrist (.*) break_ wrist (.*) fracture_ minor (.*) injury_ struck by_ injur.* wrist#_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,hand,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ struck.*right_ struck.*left_ abrasion to_ came.*in.*contactv_ bruis.*_ splinter in_ scratch.*_ pierce.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},hand (.*) injury_ hand (.*) damage_ hand (.*) break_ hand (.*) fracture_ minor (.*) injury_ pierced (.*) hand_ struck in hand_ catching (.*) hand in_ struck.* against.* causing.* discomfort_ struck by_ injur.* hand_ felt.*pain,finger tight_ rake arm_ hand break_ handbreak_ handbrake_ hand brake
+hand or arm injury,palm,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},palm (.*) injury_ palm (.*) damage_ palm (.*) break_ palm (.*) fracture_ minor (.*) injury_ pierced (.*) palm_ struck in palm_ catching (.*) palm in_ struck by_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,forearm,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},palm (.*) injury_ palm (.*) damage_ palm (.*) break_ palm (.*) fracture_ minor (.*) injury_ pierced (.*) palm_ struck in palm_ catching (.*) palm in_ injury.* to_ struck by_ injur.* forearm.*_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,arm,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ infected_ {hurt},palm (.*) injury_ palm (.*) damage_ palm (.*) break_ palm (.*) fracture_ minor (.*) injury_ pierced (.*) palm_ struck in palm_ catching (.*) palm in_ injury.* to_ struck by_ injur.* arm*_ felt.*pain,slip.*_ finger tight_ rake arm
+hand or arm injury,amput*,{arm},{arm},,
+hand or arm injury,-,,,{hurt}.*{arm},
+foot or leg injury,ankle*,laceration_ cut.*_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ rolled.* ankle_ soreness in_ abrasions to_ injured to_ pain_ sprain_ bump.*_ dislocate.*_ swell.*_ numb.*_ twist.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ pop.*_ pain_ jammed inv_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ discomfort_ {hurt},fall_ fell_ trip_ tripped_ rolled.* ankle_ reported.* pain_ injur.* ankle*_ felt.*pain,
+foot or leg injury,foot,rolled on.*_ reported sore_ rolled.* foot_ soreness in_ abrasions to_ injured to_ pinched_ pain in_ sprain_ bump.*_ dislocate.*_ struck his_ struck her_ swell.*_ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ pain to_ strain.*_ {hurt},pain_ jammed in_ crushedv_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt},abrasion (.*) toe_ banged toe_ dropped (.*) toe_ dropped (.*) foot_ rolled.* foot_ reported.* pain_ injur.* foot*_ felt.*pain,foot slipped off (.*) break_ foot slipped on (.*) break
+foot or leg injury,leg*,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ painv_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt},leg (.*) contact_ reported.* pain_ injur.* leg*_ felt.*pain_ rolled over .* {worker} .* leg.*,
+foot or leg injury,thigh,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ painv_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt},leg (.*) contact_ reported.* pain_ injur.* leg*_ felt.*pain,
+foot or leg injury,knee,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pop.*_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt}, strained (.*) knee_ dislocated (.*) knee_ hurt (.*) knee_ banged.*knee_ fell (.*) knee_ reported.* pain_ injur.* knee*_ felt.*pain,
+foot or leg injury,toe,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt}, strained (.*) knee_ dislocated (.*) knee_ hurt (.*) knee_ banged.*knee_ fell (.*) knee_ reported.* pain_ injur.* knee*_ felt.*pain,
+foot or leg injury,shin,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ cut_ {hurt}, strained (.*) knee_ dislocated (.*) knee_ hurt (.*) knee_ banged.*knee_ fell (.*) knee_ reported.* pain_ injur.* knee*_ felt.*pain,
+foot or leg injury,calf,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion _ ice_ scrape.*v_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ jammed in_ crushed_ laceration_ was caught_ sharp edge_ got caught_ {hurt},,
+foot or leg injury,-,,,{hurt}.*{leg},
+general injury,muscle*,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion_ ice_ trapped_ caught_ itch.*_ sting.*_ abrasion_ came.*in.*contact_ bruis.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ {hurt},sprained muscle_ sprained (.*) muscle_ discomfort (.*) neck_ discomfort (.*) shoulder_ felt a pop_ felt (.*) pop_ reported.* pain_ injur.* muscle*_ felt.*pain,
+general injury,shoulder,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ pain to_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pop.*_ pain_ crushed_ laceration_ was caught_ sharp edge_ cut_ {hurt},sprained muscle_ sprained (.*) muscle_ discomfort (.*) neck_ discomfort (.*) shoulder_ felt a pop_ felt (.*) pop_ reported.* pain_ injur.* shoulder_ felt.*pain,
+general injury,neck,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ pain to_ sprain_ bump.*_ dislocate.*_ twist.*_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ pain_ laceration_ sharp edge_ {hurt},sprained muscle_ sprained (.*) muscle_ discomfort (.*) neck_ discomfort (.*) shoulder_ felt a pop_ felt (.*) pop_ reported.* pain_ injur.* kneck_ felt.*pain,
+general injury,elbow,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ sprain_ bump.*_ dislocate.*_ struck his_ struck her_ bang.*_ ice_ scrape.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ bruis.*_ cut.*_ puncture.*_ splinter in_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pop.*_ pain_ jammed in_ crushed_ crushed_ laceration_ was caught_ sharp edge_ got caught_ {hurt},elbow struck_ elbow banged_ elbow hit_ injur.* elbow_ felt.*pain,
+general injury,abdomen,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain in_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain in_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion_ discomfort_ itch.*_ sting.*_ discomfort to_ strained_ sensation in_ puncture.*_ strain.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ crushed_ {hurt},sprained muscle_ sprained (.*) muscle_ discomfort (.*) neck_ discomfort (.*) shoulder_ felt a pop_ felt (.*) pop_ reported.* pain_ injur.* muscle*_ felt.*pain,
+general injury,slice*,,ip.*skin_ employee.*skin_ worker.*skin,,
+general injury,groin,laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain_ bump.*_ struck_ slipped into_ puncture to_ contusion to_ swell.*_ numb.*_ bang.*_ ice_ scrape.*_ slice.*_ trapped_ caught_ itch.*_ sting.*_ irritation to_ discomfort to_ strained_ jarred_ sensation in_ puncture.*_ splinter in_ painto_ pain in_ {hurt},_ cut,,
+general injury,skin,,,skin irritat.*,
+general injury,rib*,reported sore_ soreness in_ abrasions to_ injur.*_ twinge in_ pain to_ graze to_ pain to_ laceration_ cut_ hurt_ broke_ broken_ fracture_ fractured_ swollen_ reported sore_ soreness in_ abrasions to_ injured to_ pinched_ graze to_ pain to_ sprain_ bump.*_ dislocate.*_ struck_ puncture to_ contusion_ discomfort_ itch.*_ sting.*_ discomfort to_ strained_ sensation in_ puncture.*_ {hurt},injury_ soreness_ contact with_ dislocate.*_ impacted the_ hospital_ pain_ crushed,sprained muscle_ sprained (.*) muscle_ discomfort (.*) neck_ discomfort (.*) shoulder_ felt a pop_ felt (.*) pop_ reported.* pain_ injur.* muscle*_ felt.*pain,
+general injury,-,,,{genbody}.*{hurt}_ {hurt}.*{genbody},
+non-work related injury or illness,injur*,non.*work.*related,non.*work.*related,,
+non-work related injury or illness,medivac,non.*work.*related,non.*work.*related,,
+minor fluid spill,tea,spill_ spilt_ spilled_ stiring_ swirling_ dropped,,spilled (.*) tea_ spilled tea_ spill tea_ minor burn,
+minor fluid spill,coffee*,spill_ spilt_ spilled_ stiring_ swirling_ dropped,,spilled (.*) coffee_ spilled coffee_ spill coffee_ minor burn,
+lifting or moving loads,load*,lifting_ moving_ fell off,caught edge of_ struck_ damag.*_ shifted_ of.*slide.*off_ of.*slide.*to_ of.*slide.*from,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked_ came in contact,oil leak from_ underground_ table saw
+lifting or moving loads,crane*,lifting_ moving_ fell off,caught edge of_ struck_ damag.*_ hook.*drop.*into_ made contact with,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked_ came in contact,oil leak from_ underground_ table saw
+lifting or moving loads,fork*,lifting_ moving_ fell off_ slid.*from_ slid.*off_ slid.*across,caught edge of_ struck_ damag.*_ tilt.*forward_ made contact with,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked_ came in contact,oil leak from_ underground_ table saw
+lifting or moving loads,backed,_ fell off,caught edge of_ struck_ damag.*,spotter,oil leak from_ underground_ table saw
+lifting or moving loads,backing,_ fell off,caught edge of_ struck_ damag.*,spotter_ hit.* while.* back.*,oil leak from_ underground_ table saw
+lifting or moving loads,hoist*,,,was being hoisted,
+lifting or moving loads,spotter,lifting_ moving_ backing.* with out_ backing.* without_ reversing.* without_ without,caught edge of_ struck_ damag.*_ was never utilized_ was not utilized_ was never utilised_ was never utilised,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked ,oil leak from_ underground_ table saw
+lifting or moving loads,fell,,caught edge of_ struck_ damag.*,stack fell.* mov.*_ stack fell.* pull.*_ fell.* mov.*_ fell.* pull.*,oil leak from_ underground_ while sitting_ {worker}_ table saw
+lifting or moving loads,struck,,caught edge of_ struck_ damag.*,piece of.*struck.*_ part of.*struck.*,oil leak from_ underground_ while sitting_ {worker}_ table saw
+lifting or moving loads,excavator,lifting_ moving_ backing.* with out_ backing.* without_ reversing.* without,caught edge of_ struck_ damaged_ contacted the_ made contact with,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked_ came in contact,oil leak from_ underground_ table saw
+lifting or moving loads,operator,tip over,tip over_ damag.*,,oil leak from_ underground_ table saw
+lifting or moving loads,driver,tip over,tip over_ damag.*,,oil leak from_ underground_ table saw
+lifting or moving loads,trailer,lifting_ moving_ backing.* with out_ backing.* without_ reversing.* without,caught edge of_ struck_ tip over_ was dropped during,reversing (.*) unload_ reversed (.*) far_ struck_ hit_ knocked_ came in contact,oil leak from_ underground_ table saw
+lifting or moving loads,truck,,made contact with,drove.*away.*while.*connected,oil leak from_ underground_ table saw
+lifting or moving loads,machine,,made contact,,oil leak from_ underground_ table saw
+lifting or moving loads,moving,damage_ was struck_ struck while_ struck when_ damage.*when,,moving.*with.*skid_ whil.*moving.*stone_ damaged.*while.*mov.*materials_ while moving scaffold,oil leak from_ underground_ table saw
+lifting or moving loads,bulldozer,,struck_ made contact,,oil leak from_ underground_ table saw
+lifting or moving loads,boom,,came in.*contact with_ struck_ made contact_ caught edge of_ struck_ tip over_ contacted the_ struck,contact.*damag.*,oil leak from_ underground_ table saw
+lifting or moving loads,lift*,no document.*for_ no.*plan.*for_ no.*permit.*for,came in.*contact with_ struck_ made contact_ caught edge of_ struck_ tip over_ contacted the_ struck,,oil leak from_ underground_ table saw
+lifting or moving loads,barrow,,came in contact with_ struck_ made contact_ caught edge of_ struck_ tip over_ contacted the_ struck,,oil leak from_ underground_ table saw
+lifting or moving loads,manoeuvr*,,came in contact with_ struck_ made contact_ caught edge of_ struck_ tip over_ contacted the_ struck,,oil leak from_ underground_ table saw
+lifting or moving loads,skid,,made.*contact_ contacted_ bumped_ came.*contact,,oil leak from_ underground_ table saw
+hazardous materials or work,acid,expos.*to_ strong odor,,contaminated (.*) acid,
+hazardous materials or work,chemical,expos.*to,,chemical reaction_ hazard,
+hazardous materials or work,sulphur*,strong smell_ expos.*to,,,
+hazardous materials or work,substance,,,inhal.*harmful.*substance,
+hazardous materials or work,hazard*,did not capture_ expos.*to_ swallowing,,,dropped object
+hazardous materials or work,poison,_ expos.*to_ analyse.*for_ sample.*for_ test.*for,ivy_ exposure,,
+hazardous materials or work,lime,came in contact_ came into contact with_ exposed to,,,
+hazardous materials or work,egg*,strong smell_ rotten smell_ smelt rotten_ expos.*to,,,
+hazardous materials or work,smell*,strong smell_ rotten smell_ strong paint_ solvent_ expos.*to,,,
+hazardous materials or work,exposure,,,exposure.* chemical.*,
+hazardous materials or work,level*,radiation_ expos.*to,,radiation.*exceed.*,
+hazardous materials or work,monoxide,ignoring.* reading_ high.*reading_ high.*limit.*_ expos.*to_ analyse.*for_ sample.*for_ test.*for,,,
+hazardous materials or work,asbestos,located_ expos.*to_ analyse.*for_ sample.*for_ test.*for_ found,contain.*material*,,
+hazardous materials or work,chrysotile,located_ expos.*to_ analyse.*for_ sample.*for_ test.*for_ found,contain.*material*,,
+hazardous materials or work,benzene,high level.*_ expos.*to_ analyse.*for_ sample.*for_ test.*for_ found,,,
+hazardous materials or work,chlorine,expos.*to_ analyse.*for_ sample.*for_ test.*for_ found,gas release.*,,
+hazardous materials or work,warn*,,buried.*cable_ buried.*conduit_ was located ,,
+hazardous materials or work,sewage,analyse.*for_ sample.*for_ test.*for,,worker.*contact.*with,
+hazardous materials or work,co,high reading_ high level,,,
+hazardous materials or work,effluent,located_ expos.*to_ analyse.*for_ sample.*for_ test.*for_ found_ discharge.* of,discharge,,
+hazardous materials or work,concrete,,,concrete expos.*_ expose.*to.*concrete,
+hazardous materials or work,sensor,,,co.*sensor.*activated,
+hazardous materials or work,gas,,cylinder.*unsafe,,
+general illness or health issue,ach*,,,stomach (.*) aching_ stomach (.*) ach_ feeling unwell_ felt unwell_ illness_ non-work related illness,
+general illness or health issue,heart,passed out_ felt_ struggling with, passed out,heart attack,
+general illness or health issue,unwell,passed out_ felt_ complained_ feeling, passed out,unwell and fainted_ unwell (.*) fainted_ fainted_ took.*sickness_ with sickness,
+general illness or health issue,well,did not feel_ didn't feel_ didnt feel,,,
+general illness or health issue,flu,diagnosed.*with_ struggling with,,flu (.*) symptoms_ unwell and fainted_ unwell (.*) fainted_ fainted,
+general illness or health issue,motion,feeling unwell_ felt unwell,sickness.*,,
+general illness or health issue,dehydration,,,heat stress .* dehydration,
+general illness or health issue,chest,sore_ suffer.*_ struggling with,,complained.*pain_ experienced.*pain_ breath.* difficulties_ breath.* issue*_ suffur.* chest pains_ felt chest pains_ feel.*chest pains,
+general illness or health issue,breath*,struggling with,,breath.* difficulties_ breath.* issue*_ difficult.*breath.*,
+general illness or health issue,cramp*,sore_ suffer.*_ struggling with,,cramp.* in.* leg.*_ cramp.* in.* arm.*_ cramp.* in.* hand.*_ cramp.* in.* stoma.*_ cramp.* in.* belly.*_,
+general illness or health issue,throat,sore_ suffer.*_ struggling with,sore,,
+general illness or health issue,urin*,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,issue.*urinar.*,
+general illness or health issue,faint,felt_ get.*_ suffer.*,and dizzy_ {worker} fainted .* walking_ {worker} fainted .* working,,
+general illness or health issue,vomit*,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,, ill.*site,
+general illness or health issue,condition,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,has.*exist.*medical condition,
+general illness or health issue,sick*,felt_ get.*_ suffer.*,,has.*exist.*medical condition,
+general illness or health issue,migraine*,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,,
+general illness or health issue,diabe*,felt_ get.*_ suffer.*_ diagnosed.*with, seizure,,
+general illness or health issue,health,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,vertigo,,
+general illness or health issue,muscl*,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,fever.*and.*muscl.*pain,
+general illness or health issue,issue,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,medical.* personal,
+general illness or health issue,pain*,sever.*stomach,using.*toilet,,
+general illness or health issue,nausea,symptoms of,dizz.*,,
+general illness or health issue,symptoms,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,heat ill.*_ heat sick.*,,
+general illness or health issue,infection,diagnosed.*with,,,
+general illness or health issue,dizzy,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,felt.*dizzy.*hot,
+general illness or health issue,syncopial,experienced,,has.*exist.*medical condition,
+general illness or health issue,feel,,,began to feel.* ill_ began to feel.*naucious_ began to feel.* heavy sweatingbegan to feel.*cramps_ began to feel.*blur.*vision,
+general illness or health issue,hernia,{worker},,,
+general illness or health issue,collap*,,,{worker} collapsed .* walking_ {worker} collapsed .* working,
+general illness or health issue,cough*,disrtressed and.*_ distressed and.*,,,
+general illness or health issue,medical,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,personal.*condition_ non.*work.*related,
+general illness or health issue,*ache,get.*_ suffer.*_ diagnosed.*with_ struggling with_ complained,,employee.*headache_ worker.*headache_ ip.*headache,
+general illness or health issue,reaction,allergic,,,
+sharp objects,sharp,,,contact (.*) sharp,
+environmental leak or issue,turbidity,,,plume (.*) identified,
+environmental leak or issue,sewage,expos.*to,was released_ release,sewage overflowed_ sewage leak_ sewage spill_ leak noticed_ spill.*to.*,
+environmental leak or issue,contaminate*,expos.*to,drained to,contaminated water_ contaminated (.*) water_ hydrocarbon contaminated water_ hydrocarbon contaminated (.*) water_ leak noticed,
+environmental leak or issue,caustic,expos.*to,drained to,caustic (.*) tank_ tank (.*) leak_ leak noticed,
+environmental leak or issue,fume*,expos.*to,,exposed (.*) fume_ exposed (.*) fumes,
+environmental leak or issue,oil,expos.*to,was released_ release,,
+environmental leak or issue,hydrocarbon*,expos.*to,was released_ release,,
+environmental leak or issue,sewer,drained to,,,
+environmental leak or issue,culvert,,,type 1.*into.*culvert,
+environmental leak or issue,coolant,,was released_ release,,
+environmental leak or issue,gas,,was released_ release,,
+environmental leak or issue,siltation,,water supply,,
+line strike,struck,cable_ sewer_ line_ conduit_ culvert_ pipe,,struck (.*) line_ cable struck during excavation_ pipe struck during excavation_ sewer struck during excavation_ auger struck .* pipe,struck in hand_ contacted pile_ {leg}
+line strike,strike,cable_ sewer_ line_ conduit_ culvert_ pipe,,strike (.*) line,struck in hand_ contacted pile
+line strike,excavator,,,severed (.*) cable_ hit (.*) cable_ struck (.*) cable_ broke (.*) cable_ severed (.*) line_ hit (.*) line_ struck (.*) line_ broke (.*) line_ hit (.*) drain_ struck (.*) drain_ broke (.*) drain_ severed (.*) sewer_ hit (.*) sewer_ struck (.*) sewer_ broke (.*) sewer,struck in hand_ contacted pile
+line strike,excavation,line was abandoned,,,
+line strike,line, cut into_ severed_ broke the,pierce.*,existing.*line.*caus.*leak_ unmarked.*discovery_ damage.*nitrogen.*line_ cut.*live,struck in hand_ contacted pile
+line strike,powerline,made contact with_ hit overhead,damag.*_ crushed,contact.*overhead_ unmarked.*discovery_ cut.*live,struck in hand_ contacted pile
+line strike,contact,,,excavator.*contact.*with.*conduit_ excavator.*contact.*with.*line_ excavator.*contact.*with.*pipe_ excavator.*contact.*with.*sewer,struck in hand_ contacted pile
+line strike,bucket, cut into_ severed,,excavator.*contact.*with.*conduit_ excavator.*contact.*with.*line_ excavator.*contact.*with.*pipe_ excavator.*contact.*with.*sewer_ damag.*_ unmarked.*discovery,struck in hand_ contacted pile
+line strike,conduit,broke the,crushed,unmarked.*discovery_ cut.*live,struck in hand_ contacted pile
+electric shock or issue,electric*,,arc appear.*_ shock,static electric discharge_ electric shock_ could become live_ cable.*uncover.*_ line.*uncover.*_ cable.*found.*_ line.*found.*_ felt.*shock_ unprotected.*termination.*_ {worker}.*expos.*_ {worker}.*discharge_ damaged.*electric.*cord_ {worker}.*electric.*burn.*,pinched (.*) between_ electric motor_ electrician got (.*) cut
+electric shock or issue,live,,,static electric discharge_ electric shock_ could become live,
+electric shock or issue,fuse,,,fuse.*box.*open_ fuse.*box.*expose.*,
+electric shock or issue,energi*,exposed,,was energi.*,
+electric shock or issue,tingle*,,hand,,
+ppe non-compliance,protect*,observed.*without_ observed.*with out,,not wearing (.*) protection_ not wearing (.*) ppe_ no ppe_ without correct use.*personal protect.*equipment ,was wearing.*ppe
+ppe non-compliance,ppe,,,{observed}.*{without}.*{ppe}_ not wearing (.*) protection_ not wearing (.*) ppe_ no ppe_ ppe was damaged_ ppe on site was damaged,was wearing.*ppe
+ppe non-compliance,safety,without anchoring_ incoorectly using_ incorrect.* us.*,without.* harness_ without.* ppe_ without.*arrest,without.*glasses_ no.*glasses,was wearing.*ppe
+ppe non-compliance,fall,without anchoring_ incoorectly using_ incorrect.* us.*,without.* harness_ without.* ppe_ without.*arrest,,was wearing.*ppe
+ppe non-compliance,gloves,not.*wear.*,,no.*glove.*worn,was wearing.*ppe
+alcohol or drugs,alcohol,positive.*for,, empty (.*) bottle_ under (.*) influence_ intoxicated,
+alcohol or drugs,drugs,positive.*for_ use.*recreational,, empty (.*) packet_ under (.*) influence_ intoxicated,
+alcohol or drugs,test,,,drug test,
+site compliance or practice issue,removed, fenceline_ fence_ ,without authorization_ without authorisation,,
+site compliance or practice issue,modif*,,extension.*lead.*_ extension.*cord.*,modified.* unqualified,
+site compliance or practice issue,permit,without.*work_ not captured_ with out_ without work autherszation_ without work authorisation_ without work authorization,not in place_ were not captured,during.* audit_ failed.* section_ modif.*without.*permit_ without permit_ with out permit_ without.*work_ did not have.*permit_ no permit.*,
+site compliance or practice issue,practice,,not in place_ were not captured,scaffold.* improper.*practice,
+site compliance or practice issue,access*,,,without.* permission,
+site compliance or practice issue,control*,,not in place_ were not captured,,
+site compliance or practice issue,under,,,employee.*under.*suspended load_ worker.*under.*suspended load_ ip.*under.*suspended load,
+site compliance or practice issue,violation,employee.* worker.*_ dot,work procedure_ practice_ life saving rule.*,lsr violation_ violation .* lsr,
+site compliance or practice issue,infringement,,,isolation.*infringement.*test,
+site compliance or practice issue,emergency,,,emergency.*stop.*inadvertently.*activated_ emergency.*stop.*inadvertently.*pressed_ emergency.*stop.*inadvertently.*pushed,
+site compliance or practice issue,inadvertently,,closed .* wrong {mechcomponent},,
+site compliance or practice issue,lift*,no document.*for_ no.*plan.*for_ no.*permit.*for,,,
+site compliance or practice issue,modif*,,without approval*_ out.*plan_ out.* agree.*,,
+site compliance or practice issue,compliance,,,not.*compliance.*standard.*_ non.*compliance.*requirement.*,
+site compliance or practice issue,policy,,,safety stand down.*remind.* policy,
+site compliance or practice issue,procedure,failure.*follow_ not.*aware.*of,without approval*_ out.*plan_ out.* agree.*_ not in place_ were not captured_ not.*adhered to,,
+site compliance or practice issue,restrict*,,,breached.*restriction.*_ enter.*work.*area,
+site compliance or practice issue,risk,uncontrolled,,,
+site compliance or practice issue,rams,unsuitable,,unsuitable.*for.*task,
+site compliance or practice issue,plan,no document.*for_ no.*plan.*for_ no.*permit.*for,,failed to.*complete,
+site compliance or practice issue,rule*,failure.*follow_ failure.*observe_ not.*observe_ not.*follow_ break_ non-compliance,breach,fail.*safety rule.*_ outside.*safety rule.*_ safety rule.*fail.*_ code.*conduct.*breach_ life.*saving.*breach,
+site compliance or practice issue,scaffold*,,not .* hooked on,,
+site compliance or practice issue,fail*,,to re.*install.*mark.*_ re.*instate.*mark.*,,
+site compliance or practice issue,without,,authorisation from_ without .* fall protection,mov.*without.*guide.*_ back.*without.*guide.*_ mov.*with.*no.*guide.*_ back.*with.*no.*guide.*,
+site compliance or practice issue,own,,,attempt.*to.*on.*his own_ attempt.*to.*on.*her own_ work.*on.*his own_ work.*on.*her own,
+site compliance or practice issue,unsafe,,work.*procedure_ practice.*_ work.*practice.*,,
+site compliance or practice issue,climb*,,,climb.*rail,
+site compliance or practice issue,barrier.*,no safety,,,
+site compliance or practice issue,unprotected,expose.*to,,,
+site compliance or practice issue,unguarded ,,,off.*unguarded area,
+site compliance or practice issue,observed,,,riding.*back.*mule,
+site compliance or practice issue,service,tag.*out of,,,
+site compliance or practice issue,zone,,,inside.*exclusion.*zone,
+site compliance or practice issue,ptw,without.*work_ not captured_ with out_ without valid,not in place_ were not captured,during.* audit_ failed.* section_ modif.*without.*permit_ without permit_ with out permit_ without.*work_ did not have.*permit_ no permit.*,
+site compliance or practice issue,zone,,,found.*within.*exclusion.*zone,
+site compliance or practice issue,unauthorised,,use of,,
+site compliance or practice issue,handrail,,was discovered.*loose_ was discovered.*missing_ was discovered.*broke.*_ was discovered.*faulty,,
+site compliance or practice issue,unsuitable,,packaging_ rigging_ configuration_ practice_ procedures,,
+site compliance or practice issue,revoked,,,{worker} .* privileges .* revoked.*,
+site compliance or practice issue,suspend*,,,{worker} .* privileges .* suspended,
+site compliance or practice issue,oversight,,,operating without .* oversight_ working without .* oversight,
+site compliance or practice issue,supervision,,,operating without .* supervision_ working without .*  supervision,
+site compliance or practice issue,toolbox,,,no toolbox talk held_ no toolbox talk took place,
+site compliance or practice issue,protection,not wearing,not wearing_ was not worn,protection.*not worn_ fall protection.*unhooked_ fall protection.*not latched_ fall protection.*not connected_ fall protection.*not hooked,
+confined space non-conformance or issue,confine*,non-compliance_ non compliance_ fail.*to comply_ infringement.*rules relating to_ violating_ in violation_ breach of,space permit_ space attendant_ space entry without_ space.*procedure.*violat.*_ space.*entry.*procedure,entered.*confined.*without_ no confined space entry_ without.*confined space entry_ watch.*left.*while.*still.*confined space,
+confined space non-conformance or issue,crawl*,,,crawled.*into.*pipe_ lsr breach,
+confined space non-conformance or issue,air,,,breathing.*air.*supply,
+minor non-injury event,sank,,,foot.* sank.* hole,
+minor non-injury event,delivery,,,unsafe.* delivery,
+head or face injury,-,,,{head}.*{hurt}_ {hurt}.*{head},communication head_ cement head_ overhead
+head or face injury,face,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*,sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head
+head or face injury,head,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ jarred their_ jarred his_ jarred her_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head_ overhead_ shredder head
+head or face injury,forehead,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head_ overhead_ shredder head
+head or face injury,mouth,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head
+head or face injury,facial,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head
+head or face injury,nose,hit.*_ struck.*_ bump.*_ injur.*_ broke.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},bleed.*_ broke.*_ sharp edge_ injur.*,,communication head_ cement head
+head or face injury,jaw,suffer.* broke.*_ hit.*_ struck.*_ bump.*_ injur.*_ broke.*_ laceration to_ irritation to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},bleed.*_ broke.*_ sharp edge_ injur.*,,communication head_ cement head
+head or face injury,ear,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},bleed.*_ broke.*_ sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury_ complained.*pain,communication head_ cement head
+head or face injury,tooth,hit.*_ struck.*_ bump.*_ injur.*_ broke.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ bruis.*_ dmage.*_ sensation_ tingling_ {hurt},damage.*_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head
+head or face injury,cheek,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury,communication head_ cement head
+head or face injury,eyebrow,hit.*_ struck.*_ bump.*_ injur.*_ laceration.*to_ irritation.*to_ abrasion to_ came.*in.*contact_ came.*in.*contact_ bruis.*_ sensation_ tingling_ cut.*_ {hurt},sharp edge_ injur.*,struck.* face.* by_ struck.* head.* by_ struck.* nose.* by_ struck.* ear.* by_ hit.* in .* by_ minor.* injury_ suffer.*injury_ caus.*cut_ cut,communication head_ cement head
+head or face injury,concussion,suffering,,,
+head or face injury,concust,,,{worker} .* concust,
+head or face injury,suffered,,broken bones.*eye socket,,
+offshore transfer,transfer,,,injured.* during.* transfer,
+work vehicle incident,bucket,,,excavator.* broke.*,
+work vehicle incident,roller,,tipped over_ was reversing_ reversed_ slip.*,,
+aggressive behaviour,altercation,employee.*_ worker.*,with.*employee.*_ with.*worker.*,,
+aggressive behaviour,fight,employee.*_ worker.*,,,fight of stairs
+aggressive behaviour,argument,employee.*_ worker.*,,,
+weather related issue,rain,overnight_ broke.*due.*to_flooded_ stuck.*heavy,flooded,heavy.*rain.* leak.*,
+weather related issue,snow,overnight_ broke.*due.*to_ weight of_ stuck.*heavy,,heavy snow.*,
+weather related issue,wind*,gust of_ overnight_ broke.*due.*to_ blown over,gusting_ blown over,strong wind.*_ high wind.*,
+weather related issue,heat,not feel.*well_ felt unwell,stress_ stroke_ exposure_ related illness,,
+weather related issue,frost*,,,frostbite,
+weather related issue,freez*,,conditions,frostbite,
+weather related issue,gust*,,,stong gust.*,
+weather related issue,tree,,,fall.*branch.*tree,while moving_ while lift.*
+weather related issue,dizz*,hot environment_ high temp.*_ heat,from.*heat,,
+weather related issue,weather,severe_ adverse_ bad_ inclement,severe_ adverse_ bad_ inclement,,
+weather related issue,lightning,struck by_ hit by,,,
+weather related issue,storm,overnight_ broke.*due.*to_ weight of_ stuck.*heavy,,damage.*during storm,
+security or general safety concern,suspicious,,followed employee.*_ briefcase_ case_ bag.*_ person,,
+security or general safety concern,suspcious,,followed employee.*,,
+security or general safety concern,evacuation,,,evacuation alram_ evacuation message,
+security or general safety concern,alarm,,,shutdown alarm sounded_ alarm went off,
+security or general safety concern,unknown,operators are_ operators were_ visitors were_ parties were_,,unknown person.*asked.* management_ unknown person entered,
+security or general safety concern,trespass*,,,found trespass.* in.*,
+security or general safety concern,dog*,,,dog.*loose,
+security or general safety concern,entry,unauthori.*,,,
+security or general safety concern,fugitive*,,on.*run,,
+security or general safety concern,break,security.*disturb.*,,attempt.*break.*in,
+security or general safety concern,unescorted,entered ,,,
+security or general safety concern,escort*,without_ no,,,
+knife incident,knife,,,cut.*self_ {worker} .* knife .* {arm}_ knife .* {arm} .* {worker}_ knife.*{hurt}.*{arm}_ {hurt}.*{worker},
+excavations,excavat*,deep_ working within_ working in,contact.*culvert,in.* excavation.* injur.*,
+excavations,trench,,excavation,fell into trench_ trench .* wall gave way_ trench .* wall collapsed_ fell back.*into.*trench,
+disease or infection,malari*, diagnose.*with,,,
+disease or infection,screening,,,test.*positive.*screening,
+office or facilities incident or injury,chair,,brok.*_ fail.*whil.*employee.*sat.*it_ fail.*employee,,
+office or facilities incident or injury,lift,passenger_ stuck in,doors.*not.*open,passenger.*came.*stop,
+office or facilities incident or injury,computer,while.*use.*,made.*sound,,
+office or facilities incident or injury,toilet,flood.*,overflow_ flood.*_ leak.*,,
+vandalism,sever*,,,intentionally.*sever.*others,
+line of fire,pressure,,,tight.*under.*pressure_tight.*while.*pressur.*_ still.*under.*pressure,
+line of fire,line,,,line of fire,out of line of fire
+line of fire,release,,,accidental.*release.*pressure,
+near miss,near,,,near miss,
