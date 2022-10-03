@@ -150,3 +150,6 @@ coverage_checks/
 07_language_models/training_data
 
 08_output
+
+.DS_Store
+.DS_Store
