@@ -1,5 +1,5 @@
 group,rules_all
-competency,{worker} did not receive correct training_ {worker} was not trained_ {worker} did not have required competency_ {worker} did not have certification
+competency,{workerconsol} did not receive correct training_ {workerconsol} was not trained_ {workerconsol} did not have required competency_ {workerconsol} did not have certification
 fall from or working at height issue,
 dropped object or material,{droppedobject} fell_ {droppedobject} fell from above_ {droppedobject} fell from higher level_ {droppedobject} fell to lower level_ {droppedobject} dropped from higher level_ {droppedobject} dropped to grade from platform above  
 mechanical or equipment issue,{mechfailcomponent} fault_ failure of {mechfailcomponent}_ component failure in {mechfailcomponent}_ {mechfailcomponent} failed_ {mechfailcomponent} breakdown_ {mechfailcomponent} broke down
@@ -8,10 +8,10 @@ hydraulic fluid or oil leak,there was a {leak}_ a {leak}_ a {vehicle}_ {leak} {o
 hazardous materials or work,
 environmental leak or issue,
 line strike,{vehicleexcavate} {vehiclestruck} {linestruck}
-ppe non-compliance,{worker} not wearing correct {ppe}
-site compliance or practice issue,{permit} not {followed}_ {permit} non conformance_ {permit} non compliance_ non compliance with {permit}_ non conformance with {permit)_ {worker} did not {follow} {permit}_ failure of work {permit}_  failure to {follow} {permit}
+ppe non-compliance,{workerconsol} not wearing correct {ppe}_ fall arrest system not correctly installed_ no fall arrest system in place_ fall arrest system not used when_ {workerconsol} was working on the roof_ {workerconsol} was grinding material_ {workerconsol} was cutting_ {ppe} not worn_ improper use of {ppe}_ {ppe} not utilised while_ {ppe} not used correctly  when_ {workerconsol} did not have the correct {ppe}
+site compliance or practice issue,{permit} not {followed}_ {permit} non conformance_ {permit} non compliance_ non compliance with {permit}_ non conformance with {permit)_ {workerconsol} did not {follow} {permit}_ failure of work {permit}_  failure to {follow} {permit}
 confined space non-conformance or issue,
 security or general safety concern,
 excavations,{vehicleexcavate} was working_ {vehicleexcavate} was working on excavation_ {vehicleexcavate} was near excavation_ {vehicleexcavate} was adjacent to excavation_ {vehicleexcavate} in vicinity of excavation_ {vehicleexcavate} was working pit_ {vehicleexcavate} was working on hole
 line of fire,
-near miss,near miss reported_ near miss recorded_ {worker} recorded near miss_ nearmiss reported_ nearmiss recorded_ {worker} recorded nearmiss_ dangerous near miss recorded_ high potential near miss recorded_ dangerous near miss occurred
+near miss,near miss reported_ near miss recorded_ {workerconsol} recorded near miss_ nearmiss reported_ nearmiss recorded_ {workerconsol} recorded nearmiss_ dangerous near miss recorded_ high potential near miss recorded_ dangerous near miss occurred
