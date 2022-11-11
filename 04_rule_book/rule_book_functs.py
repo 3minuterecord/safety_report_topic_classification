@@ -339,7 +339,7 @@ def find_pattern(doc, keyword, check_pre, check_post, check_all, check_void, win
         if any_match is None:
             return False
         else:
-            # We want to finad and extract the context of the keyword in the sentence
+            # We want to find and extract the context of the keyword in the sentence
             # With a predefined window
             pre_context = "(?:[a-zA-Z'-]+[^a-zA-Z'-]+){0,<window>}<keyword>".replace('<keyword>', str(keyword)).replace('<window>', str(window))
             post_context = "<keyword>(?:[^a-zA-Z'-]+[a-zA-Z'-]+){0,<window>}".replace('<keyword>', str(keyword)).replace('<window>', str(window))

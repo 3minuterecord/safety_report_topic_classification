@@ -278,6 +278,7 @@ ppe non-compliance,ppe,,,{observed}.*{without}.*{ppe}_ not wearing (.*) protecti
 ppe non-compliance,safety,without anchoring_ incoorectly using_ incorrect.* us.*,without.* harness_ without.* ppe_ without.*arrest,without.*glasses_ no.*glasses,was wearing.*ppe
 ppe non-compliance,fall,without anchoring_ incoorectly using_ incorrect.* us.*,without.* harness_ without.* ppe_ without.*arrest,,was wearing.*ppe
 ppe non-compliance,gloves,not.*wear.*,,no.*glove.*worn,was wearing.*ppe
+ppe non-compliance,-,,,{worker}.*not wear.*{ppe},
 alcohol or drugs,alcohol,positive.*for,, empty (.*) bottle_ under (.*) influence_ intoxicated,
 alcohol or drugs,drugs,positive.*for_ use.*recreational,, empty (.*) packet_ under (.*) influence_ intoxicated,
 alcohol or drugs,test,,,drug test,
