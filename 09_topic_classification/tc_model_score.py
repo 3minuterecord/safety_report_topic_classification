@@ -49,8 +49,19 @@ def main():
                                         checkInputType = True
                                         score = int(score)
                                         scores.append(score)
+                
+                # Final tally including last check
+                trues, falses = scores.count(1), scores.count(2)
+                tots = trues + falses
+                trues_per = round(100*trues/tots)
+                falses_per = round(100*falses/tots)
+                score_tally = f'T: {trues} ({trues_per}%), F: {falses} ({falses_per}%)'
+
                 out_df['scores'] = scores[1:]
+                print('\n')
                 print('Writing scores...')
+                print('Final tally...')                
+                print(score_tally)
                 out_df.to_csv(f'06_scored_samples/{sample_ref}_scored_predictions_{trues_per}-{falses_per}_{trues}-{falses}.csv', index=False)
                 print('done \n')
         except:

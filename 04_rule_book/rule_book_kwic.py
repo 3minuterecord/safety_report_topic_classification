@@ -2,6 +2,7 @@ from unicodedata import category
 import pandas as pd
 import rule_book_functs as rbfuncts
 from tqdm.notebook import tqdm
+import sys
 
 # Description:
 # +--------------------------------------------------------------------+
@@ -12,43 +13,66 @@ from tqdm.notebook import tqdm
 # +--------------------------------------------------------------------+
 
 def main():
-        # Load raw incident data
+        # Specify the standard required columns
         req_cols1 = ['IncidentNumber', 'ShortDescription', 'FullDescription', 'ImmediateAction']
         req_cols2 = ['ID', 'EventTitle', 'Final Narrative']
-        incidents = pd.read_csv("01_data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
-        osha_incs = pd.read_csv("01_data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
+        
+        data_choice = input('Original data or latest test? (o/l): ')
+                
+        if data_choice == 'o':
+                # Load raw incident data
+                incidents = pd.read_csv("01_data/source/20220413_D1_Incidents.csv", dtype=str, usecols=req_cols1)  
+                osha_incs = pd.read_csv("01_data/source/OSHA_January2015toJuly2021.csv", dtype=str, usecols=req_cols2)  
 
+                # Some clean up for Wood dataset
+                # Concatenate some of the fields to make the 'text' field for searching
+                incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
+                incidents['text'] = (
+                        incidents['ShortDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['FullDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['ImmediateAction'].astype(str).fillna('')
+                ).str.lower()
+                incidents['dataset'] = 'ORGP'
+
+                # We only need the incident ID and the text for now
+                incidents = incidents[['incident_id', 'dataset', 'text']]
+
+                # Some clean up for OSHA dataset
+                # Concatenate some of the fields to make the 'text' field for searching
+                osha_incs.rename(columns={'ID': 'incident_id'}, inplace=True)
+                osha_incs['text'] = (
+                        osha_incs['EventTitle'].astype(str).fillna('') + ' ' + 
+                        osha_incs['Final Narrative'].astype(str).fillna('')
+                ).str.lower()
+                osha_incs['dataset'] = 'OSHA'
+
+                # We only need the incident ID and the text for now
+                osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
+
+                # Combine OSHA and Wood datasets
+                incidents = pd.concat([incidents, osha_incs])
+        elif data_choice == 'l':
+                # Load raw incident data
+                incidents = pd.read_csv("01_data/source/20221109_D1_Incidents.csv", dtype=str, usecols=req_cols1)    
+
+                # Some clean up for Wood dataset
+                # Concatenate some of the fields to make the 'text' field for searching
+                incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
+                incidents['text'] = (
+                        incidents['ShortDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['FullDescription'].astype(str).fillna('') + ' ' + 
+                        incidents['ImmediateAction'].astype(str).fillna('')
+                ).str.lower()
+                incidents['dataset'] = 'ORGP'
+
+                # We only need the incident ID and the text for now
+                incidents = incidents[['incident_id', 'dataset', 'text']]
+        else:
+                sys.exit(f"Error: Invalid data selection...")
+        
         # Load the 'kwic' rule definitions
         # 'kwic' = Keyword in context
         rul_csv = pd.read_csv('04_rule_book/rule_book_kwic.csv')
-
-        # Some clean up for Wood dataset
-        # Concatenate some of the fields to make the 'text' field for searching
-        incidents.rename(columns={'IncidentNumber': 'incident_id'}, inplace=True)
-        incidents['text'] = (
-                incidents['ShortDescription'].astype(str).fillna('') + ' ' + 
-                incidents['FullDescription'].astype(str).fillna('') + ' ' + 
-                incidents['ImmediateAction'].astype(str).fillna('')
-        ).str.lower()
-        incidents['dataset'] = 'ORGP'
-
-        # We only need the incident ID and the text for now
-        incidents = incidents[['incident_id', 'dataset', 'text']]
-
-        # Some clean up for OSHA dataset
-        # Concatenate some of the fields to make the 'text' field for searching
-        osha_incs.rename(columns={'ID': 'incident_id'}, inplace=True)
-        osha_incs['text'] = (
-                osha_incs['EventTitle'].astype(str).fillna('') + ' ' + 
-                osha_incs['Final Narrative'].astype(str).fillna('')
-        ).str.lower()
-        osha_incs['dataset'] = 'OSHA'
-
-        # We only need the incident ID and the text for now
-        osha_incs = osha_incs[['incident_id', 'dataset', 'text']]
-
-        # Combine OSHA and Wood datasets
-        incidents = pd.concat([incidents, osha_incs])
 
         print('\n')
         run_choice = input('Run on sample or all data? (s/a): ')
