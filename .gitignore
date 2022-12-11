@@ -141,7 +141,7 @@ output
 coverage_checks/
 ~$gp_us_p2.xlsx
 
-03_embeddings
+03_embeddings/glove/glove.6B.50d.txt
 
 01_data/fabricated
 01_data/prepared
